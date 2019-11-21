@@ -1,5 +1,14 @@
 title = "Master configuration file for editor, shell and everything else."
 
+[programs]
+names = [
+    "git",
+    "vim",
+    "wget",
+    "zsh",
+    
+]
+
 [author]
 name = "Edwin Bedolla"
 
@@ -9,3 +18,5 @@ name = "Edwin Bedolla"
 
 [editor]
 name = "code"
+extensions = "vscode-settings/extensions.toml"
+settings = "vscode-settings/settings.json"
