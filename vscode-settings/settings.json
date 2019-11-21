@@ -1,7 +1,7 @@
 {
     "workbench.iconTheme": "vscode-icons",
     "editor.suggestSelection": "first",
-    "workbench.colorTheme": "Dracula",
+    "workbench.colorTheme": "Atom One Light",
     "dayNightThemeSwitcher.dayTheme": "Atom One Light",
     "dayNightThemeSwitcher.nightTheme": "Dracula",
     "python.autoComplete.addBrackets": true,
@@ -68,5 +68,5 @@
     "editor.wordWrapColumn": 88,
     "editor.fontSize": 16,
     "editor.formatOnSave": true,
-    "python.jediEnabled": false
+    "python.jediEnabled": false,
 }

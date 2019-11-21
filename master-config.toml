@@ -21,7 +21,8 @@ special = [
     {name = "fzf", url = "https://github.com/junegunn/fzf.git"},
     {name = "fd", url = "https://github.com/sharkdp/fd.git"},
     {name = "ddgr", url = "https://github.com/jarun/ddgr.git"},
-    {name = "tealdeer", url = "https://github.com/dbrgn/tealdeer.git"}
+    {name = "tealdeer", url = "https://github.com/dbrgn/tealdeer.git"},
+    {name = "code-oss"}
 ]
 
 [shell]
@@ -36,7 +37,6 @@ config = {source = "shell/zshrc.sh", destination = ".zshrc"}
 "user.email" = "developeredwin@gmail.com"
 
 [editor]
-name = "code"
-install = {name = "code-oss"}
+name = "visual studio code"
 extensions = "vscode-settings/extensions.toml"
 settings = "vscode-settings/settings.json"
