@@ -1,0 +1,11 @@
+title = "Master configuration file for editor, shell and everything else."
+
+[author]
+name = "Edwin Bedolla"
+
+    [author.github]
+    "user.name" = "edwinb-ai"
+    "user.email" = "developeredwin@gmail.com"
+
+[editor]
+name = "code"
