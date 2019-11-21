@@ -13,5 +13,9 @@ for k, v in config_file["programs"].items():
         sbp.run(basic_command + v)
 
 # * Shell
-
-sbp.run(["sh", "-c"])
+# Grab the oh-my-zsh installation script
+omf_file = requests.get(
+    "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
+)
+# Execute it
+sbp.run(["sh", "-c", omf_file.text])
