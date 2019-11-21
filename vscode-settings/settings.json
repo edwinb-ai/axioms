@@ -68,5 +68,5 @@
     "editor.wordWrapColumn": 88,
     "editor.fontSize": 16,
     "editor.formatOnSave": true,
-    "python.jediEnabled": false,
+    "python.jediEnabled": false
 }
