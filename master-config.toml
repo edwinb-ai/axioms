@@ -26,18 +26,17 @@ special = [
 
 [shell]
 name = "zsh"
-
-    [shell.zsh]
-    # Install oh-my-zsh with python-requests
-    plugins = {commands = ["sh", "-c"], url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"}
-    config = {source = "shell/zshrc.sh", destination = ".zshrc"}
+# Install Oh-My-Zsh
+install = {commands = ["sh", "-c"], url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"}
+# Copy the configuration file to the source destination
+config = {source = "shell/zshrc.sh", destination = ".zshrc"}
 
 [github]
-    [github.config]
-    "user.name" = "edwinb-ai"
-    "user.email" = "developeredwin@gmail.com"
+"user.name" = "edwinb-ai"
+"user.email" = "developeredwin@gmail.com"
 
 [editor]
 name = "code"
+install = {name = "code-oss"}
 extensions = "vscode-settings/extensions.toml"
 settings = "vscode-settings/settings.json"
