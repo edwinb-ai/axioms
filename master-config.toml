@@ -12,7 +12,9 @@ base = [
     "gcc",
     "g++",
     "gfortran",
-    "gnuplot"
+    "gnuplot",
+    "tmux",
+    "screen"
 ]
 # These are packages that are not always in the
 # official repositorires
@@ -22,7 +24,8 @@ special = [
     {name = "fd", url = "https://github.com/sharkdp/fd.git"},
     {name = "ddgr", url = "https://github.com/jarun/ddgr.git"},
     {name = "tealdeer", url = "https://github.com/dbrgn/tealdeer.git"},
-    {name = "code-oss"}
+    {name = "code-oss"},
+    {name = "alacritty"}
 ]
 
 [shell]
@@ -41,3 +44,7 @@ alias = {source = "shell/aliases.zsh", destination = ["ZSH", "/custom/"]}
 name = "visual studio code"
 extensions = "vscode-settings/extensions.toml"
 settings = "vscode-settings/settings.json"
+
+[terminal]
+name = "alacritty"
+config = {source = "terminal/alacritty.yml", destination = ["HOME", "/.config/alacritty/"]}
