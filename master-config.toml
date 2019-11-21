@@ -27,11 +27,11 @@ special = [
 
 [shell]
 name = "zsh"
-# Install Oh-My-Zsh
+# Install oh-my-zsh
 install = {commands = ["sh", "-c"], url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"}
-# Copy the configuration file to the source destination
+# Copy the configuration files to their respective destinations
 config = {source = "shell/zshrc.sh", destination = ".zshrc"}
-alias = {source = "shell/aliases.zsh", destination = "ZSH_CUSTOM"}
+alias = {source = "shell/aliases.zsh", destination = ["ZSH", "/custom/"]}
 
 [github]
 "user.name" = "edwinb-ai"
