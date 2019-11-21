@@ -1,18 +1,32 @@
 title = "Master configuration file for editor, shell and everything else."
 
+[owner]
+name = "Edwin Bedolla"
+
 [programs]
 names = [
     "git",
     "vim",
     "wget",
     "zsh",
-    
+    "gcc",
+    "g++",
+    "gfortran",
+    "gnuplot"
 ]
+    # These are packages that are not always in the
+    # official repositorires
+    [programs.special]
+    names = [
+        "julia",
+        "fzf",
+        "fd",
+        "ddgr",
+        "tealdeer"
+    ]
 
-[author]
-name = "Edwin Bedolla"
-
-    [author.github]
+[github]
+    [github.config]
     "user.name" = "edwinb-ai"
     "user.email" = "developeredwin@gmail.com"
 
