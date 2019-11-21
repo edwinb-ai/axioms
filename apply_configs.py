@@ -19,3 +19,4 @@ omf_file = requests.get(
 )
 # Execute it
 sbp.run(["sh", "-c", omf_file.text])
+# TODO: Parse the TOML file once oh-my-fish has been installed

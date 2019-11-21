@@ -30,8 +30,6 @@ special = [
 
 [shell]
 name = "zsh"
-# Install oh-my-zsh
-install = {commands = ["sh", "-c"], url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"}
 # Source/read the configuration files
 config = "shell/zshrc.zsh"
 alias = "shell/aliases.zsh"
