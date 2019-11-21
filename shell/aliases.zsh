@@ -1,4 +1,4 @@
-# ======== ALIASES =======
+# ==== ALIASES ==== #
 # zsh
 alias zshconfig="code ~/.zshrc"
 alias zshup="source ~/.zshrc"

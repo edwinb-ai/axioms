@@ -1,3 +1,4 @@
+# ==== EXPORTS ==== #
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -11,9 +12,10 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # Add Cargo (Rust package manager) to PATH
 export PATH=$HOME/.cargo/bin:$PATH
 
-# === THEME ===
+# ==== THEME ==== #
 ZSH_THEME="spaceship"
 
+# ==== OPTIONS ==== #
 # Uncomment the following line to automatically update without prompting.
 DISABLE_UPDATE_PROMPT="true"
 
