@@ -5,7 +5,6 @@
     "dayNightThemeSwitcher.dayTheme": "Atom One Light",
     "dayNightThemeSwitcher.nightTheme": "Dracula",
     "python.autoComplete.addBrackets": true,
-    "python.condaPath": "/home/edwinb/anaconda3/bin/",
     "python.formatting.provider": "black",
     "peacock.favoriteColors": [
         {
@@ -70,5 +69,4 @@
     "editor.fontSize": 16,
     "editor.formatOnSave": true,
     "python.jediEnabled": false,
-    "python.pythonPath": "/home/edwinb/anaconda3/bin/python"
 }
