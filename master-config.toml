@@ -29,8 +29,8 @@ names = [
 name = "zsh"
 
     [shell.zsh]
-    # Install oh-my-zsh in zsh syntax
-    plugins = ["sh", "-c", "(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"]
+    # Install oh-my-zsh with python-requests
+    plugins = {commands = ["sh", "-c"], url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"}
     config = {source = "shell/zshrc.sh", destination = ".zshrc"}
 
 [github]
