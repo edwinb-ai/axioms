@@ -20,14 +20,18 @@ DISABLE_UPDATE_PROMPT="true"
 # Uncomment the following line to enable command auto-correction.
 ENABLE_CORRECTION="true"
 
-# Which plugins would you like to load?
+# ==== PLUGINS ==== #
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(z git zsh-syntax-highlighting)
 
+# ==== FILES ==== #
+# Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
+# Load aliases
+source $ZSH_CUSTOM/aliases.zsh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
