@@ -15,9 +15,9 @@ $ANACONDABIN/conda create -n $ANACONDAENV python=3 --yes
 $ANACONDABIN/conda activate $ANACONDAENV
 echo "$ANACONDAENV environment created!"
 
-# In the new environment, install a TOML parser
-echo "Installing the toml parser for Python"
-pip install toml
+# In the new environment, install the necessary packages
+echo "Installing Python packages for the installation"
+pip install toml requests
 echo "Done!"
 
 # And run the configuration script

@@ -32,9 +32,13 @@ special = [
 name = "zsh"
 # Install oh-my-zsh
 install = {commands = ["sh", "-c"], url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"}
-# Copy the configuration files to their respective destinations
-config = {source = "shell/zshrc.sh", destination = ".zshrc"}
-alias = {source = "shell/aliases.zsh", destination = ["ZSH", "/custom/"]}
+# Source/read the configuration files
+config = "shell/zshrc.zsh"
+alias = "shell/aliases.zsh"
+
+    [shell.multiplexer]
+    name = "tmux"
+    config = "shell/tmux.conf"
 
 [github]
 "user.name" = "edwinb-ai"
