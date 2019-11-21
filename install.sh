@@ -13,15 +13,19 @@ ANACONDAENV="toml";
 echo "Creating the $ANACONDAENV environment."
 $ANACONDABIN/conda create -n $ANACONDAENV python=3 --yes
 $ANACONDABIN/conda activate $ANACONDAENV
+echo "$ANACONDAENV environment created!"
 
 # In the new environment, install a TOML parser
+echo "Installing the toml parser for Python"
 pip install toml
+echo "Done!"
 
 # And run the configuration script
+echo "Running the configuration file!"
 python apply_configs.py
+echo "Done!"
 
 # Finally, remove the environment
-$ANACONDABIN/conda remove -n $ANACONDAENV --all --yes
 echo "Removing the $ANACONDAENV environment."
-
-echo "DONE! :) Rebooting is necessary now."
+$ANACONDABIN/conda remove -n $ANACONDAENV --all --yes
+echo "DONE! :) Rebooting might be necessary."
