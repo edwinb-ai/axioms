@@ -31,6 +31,7 @@ name = "zsh"
 install = {commands = ["sh", "-c"], url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"}
 # Copy the configuration file to the source destination
 config = {source = "shell/zshrc.sh", destination = ".zshrc"}
+alias = {source = "shell/aliases.zsh", destination = "ZSH_CUSTOM"}
 
 [github]
 "user.name" = "edwinb-ai"
