@@ -17,12 +17,12 @@ names = [
     # These are packages that are not always in the
     # official repositorires
     [programs.special]
-    names = [
-        "julia",
-        "fzf",
-        "fd",
-        "ddgr",
-        "tealdeer"
+    programs = [
+        {name = "julia", url = "https://julialang-s3.julialang.org/bin/linux/x64/1.2/julia-1.2.0-linux-x86_64.tar.gz"},
+        {name = "fzf", url = "https://github.com/junegunn/fzf.git"},
+        {name = "fd", url = "https://github.com/sharkdp/fd.git"},
+        {name = "ddgr", url = "https://github.com/jarun/ddgr.git"},
+        {name = "tealdeer", url = "https://github.com/dbrgn/tealdeer.git"}
     ]
 
 [github]
