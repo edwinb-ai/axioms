@@ -11,6 +11,7 @@ basic_command = ["sudo", "eopkg", "it"]
 for k, v in config_file["programs"].items():
     if k == "base":
         sbp.run(basic_command + v)
+    # TODO: Deal with the special programs
 
 # * Shell
 # Grab the oh-my-zsh installation script
