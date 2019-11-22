@@ -2,7 +2,7 @@ import toml
 import subprocess as sbp
 import requests
 from typing import List, Optional
-import os, zipfile, io
+import os, zipfile, io, gzip, tarfile
 
 
 def create_programs_dir(name: Optional[str] = "programs") -> None:
@@ -56,8 +56,17 @@ def parse_special_programs(programs: List, command: List):
                         print("Done!")
                     else:
                         raise requests.HTTPError("Could not download the file!")
-                if ".tar" in v:
-                    pass
+                if ".tar.gz" in v:
+                    r = requests.get(v, stream=True)
+                    if r.status_code == requests.codes.ok:
+                        print("Downloading the file...")
+                        print("Extracting the file...")
+                        with gzip.open(r.raw) as g:
+                            t = tarfile.TarFile(fileobj=g)
+                            t.extractall()
+                        print("Done!")
+                    else:
+                        raise requests.HTTPError("Could not download the file!")
 
 # Load the configuration file and save it as a dictionary
 config_file = toml.load("master-config.toml")
