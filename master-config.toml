@@ -14,7 +14,9 @@ base = [
     "gfortran",
     "gnuplot",
     "tmux",
-    "screen"
+    "screen",
+    "make",
+    "cmake"
 ]
 # These are packages that are not always in the
 # official repositorires
@@ -24,11 +26,12 @@ special = [
     {name = "fd", url = "https://github.com/sharkdp/fd.git"},
     {name = "ddgr", url = "https://github.com/jarun/ddgr.git"},
     {name = "tealdeer", url = "https://github.com/dbrgn/tealdeer.git"},
+    {name = "exa", url = "https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip"},
     {name = "code-oss"},
     {name = "alacritty"}
 ]
-# These are programs that must be installed with a different
-# package manager
+# These are programs that must be installed with
+# the flatpak package manager
 flatpak = [
     {name = "spotify", spec = "com.spotify.Client"},
     {name = "gitkraken", spec = "com.axosoft.GitKraken"}
@@ -51,7 +54,7 @@ alias = "shell/aliases.zsh"
 [editor]
 name = "visual studio code"
 extensions = "vscode-settings/extensions.toml"
-settings = "vscode-settings/settings.json"
+settings = {source = "vscode-settings/settings.json", destination = ["HOME", "/.config/Code/User/"]}
 
 [terminal]
 name = "alacritty"

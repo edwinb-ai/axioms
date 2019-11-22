@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 # Install anaconda
 echo "Installing Anaconda distribution"
