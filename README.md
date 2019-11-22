@@ -4,10 +4,14 @@ These are the *axioms* or *rules* for my own development setup.
 
 ## Rationale
 
-**Axioms** as postulates that are taken to be true in order to build a mathematical
+**Axioms** are postulates that are taken to be true in order to build a mathematical
 system. With them, one can build more complex statements. In the same spirit,
-[*the humble programmer*](https://www.cs.utexas.edu/~EWD/transcriptions/EWD03xx/EWD340.html) has the need for the basic building blocks to develop new software, and these should
-be always **true**, i.e. robust and reliable. 
+[*the humble programmer*](https://www.cs.utexas.edu/~EWD/transcriptions/EWD03xx/EWD340.html)
+has the need for the basic building blocks to develop new software, and these should
+be always **true**, i.e. robust and reliable.
+
+With this repository, one should be able to have basic building blocks that could enable
+the eager developer to produce quality software of any kind.
 
 ## Structure
 
