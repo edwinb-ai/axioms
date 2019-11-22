@@ -2,7 +2,7 @@ import toml
 import subprocess as sbp
 import requests
 from typing import List, Optional
-import os
+import os, zipfile, io
 
 
 def create_programs_dir(name: Optional[str] = "programs") -> None:
@@ -29,9 +29,35 @@ def parse_special_programs(programs: List, command: List):
         for k, v in p.items():
             tmp_list = command.copy()
             tmp_list.append(v)
-            print(k, tmp_list)
-    print(command)
-
+            print(f"searching for {v}")
+            if k == "name":
+                try:
+                    sbp.run(tmp_list, check=True)
+                except sbp.CalledProcessError:
+                    print("Not available in repositories, trying with url")
+                    continue
+            if k == "url":
+                if ".git" in v:
+                    tmp_list = "git clone".split(" ")
+                    tmp_list.append(v)
+                    try:
+                        print("Trying to clone the repository...")
+                        sbp.run(tmp_list, check=True)
+                        print("Done!")
+                    except sbp.CalledProcessError:
+                        print("Could not clone the repository")
+                if "zip" in v:
+                    r = requests.get(v)
+                    if r.status_code == requests.codes.ok:
+                        print("Downloading the file...")
+                        print("Extracting the file...")
+                        z = zipfile.ZipFile(io.BytesIO(r.content))
+                        z.extractall()
+                        print("Done!")
+                    else:
+                        raise requests.HTTPError("Could not download the file!")
+                if ".tar" in v:
+                    pass
 
 # Load the configuration file and save it as a dictionary
 config_file = toml.load("master-config.toml")
@@ -48,7 +74,7 @@ for k, v in config_file["programs"].items():
     # * Special programs
     if k == "special":
         print(v)
-        parse_special_programs(v, basic_command)
+        parse_special_programs(v, "sudo apt install".split(" "))
 
 # * Shell
 # Grab the oh-my-zsh installation script
