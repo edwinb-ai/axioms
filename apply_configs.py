@@ -20,7 +20,17 @@ def create_programs_dir(name: Optional[str] = "programs") -> None:
 
 
 def parse_special_programs(programs: List, command: List):
-    pass
+    # First, create a special directory to store everything
+    create_programs_dir()
+    os.chdir(f"{os.getenv('HOME')}/programs")
+
+    # Then, traverse the list with the programs
+    for p in programs:
+        for k, v in p.items():
+            tmp_list = command.copy()
+            tmp_list.append(v)
+            print(k, tmp_list)
+    print(command)
 
 
 # Load the configuration file and save it as a dictionary
@@ -38,9 +48,7 @@ for k, v in config_file["programs"].items():
     # * Special programs
     if k == "special":
         print(v)
-        parse_special_programs(v)
-
-    # TODO: Deal with the installation of flatpak packages
+        parse_special_programs(v, basic_command)
 
 # * Shell
 # Grab the oh-my-zsh installation script
