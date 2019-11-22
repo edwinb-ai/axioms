@@ -30,12 +30,6 @@ special = [
     {name = "code-oss"},
     {name = "alacritty"}
 ]
-# These are programs that must be installed with
-# the flatpak package manager
-flatpak = [
-    {name = "spotify", spec = "com.spotify.Client"},
-    {name = "gitkraken", spec = "com.axosoft.GitKraken"}
-]
 
 [shell]
 name = "zsh"

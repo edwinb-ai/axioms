@@ -9,13 +9,6 @@ config_file = toml.load("master-config.toml")
 # * PROGRAMS
 basic_command = ["sudo", "eopkg", "it"]
 
-# * Flatpak
-# Following the instructions from https://flatpak.org/setup/Solus/
-first_packages = "flatpak xdg-desktop-portal-gtk"
-sbp.run(basic_command + first_packages.split(" "))
-flathub_repo = "flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"
-sbp.run(flathub_repo.split(" "))
-
 # Start parsing the programs section
 for k, v in config_file["programs"].items():
     # * Base programs
