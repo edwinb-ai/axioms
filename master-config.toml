@@ -3,6 +3,12 @@ title = "Master configuration file for editor, shell and everything else."
 [owner]
 name = "Edwin Bedolla"
 
+[languages]
+langs = [
+    {name = "julia", url = "https://julialang-s3.julialang.org/bin/linux/x64/1.2/julia-1.2.0-linux-x86_64.tar.gz"},
+    {name = "rust", url = "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"}
+]
+
 [programs]
 base = [
     "git",
@@ -21,7 +27,6 @@ base = [
 # These are packages that are not always in the
 # official repositorires
 special = [
-    {name = "julia", url = "https://julialang-s3.julialang.org/bin/linux/x64/1.2/julia-1.2.0-linux-x86_64.tar.gz"},
     {name = "fzf", url = "https://github.com/junegunn/fzf.git"},
     {name = "fd", url = "https://github.com/sharkdp/fd.git"},
     {name = "ddgr", url = "https://github.com/jarun/ddgr.git"},

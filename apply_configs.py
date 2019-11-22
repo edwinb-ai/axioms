@@ -10,7 +10,9 @@ def create_programs_dir(name: Optional[str] = "programs") -> None:
     and utilities needed.
     """
     try:
-        os.mkdir(os.environ(["HOME"]) + f"/{name}")
+        programs_dir = os.environ(["HOME"]) + f"/{name}"
+        print(f"Trying to create the following directory {programs_dir}")
+        os.mkdir(programs_dir)
     except FileExistsError:
         print("Because the directory exists, nothing will be done.")
         pass
