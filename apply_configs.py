@@ -2,7 +2,7 @@ import toml, requests
 import subprocess as sbp
 from typing import List, Optional
 import os, zipfile, io, gzip, tarfile
-import shlex
+import shutil
 
 
 def create_programs_dir(name: Optional[str] = "programs") -> None:
@@ -153,6 +153,7 @@ os.chdir(f"{os.getenv('HOME')}/programs")
 # Rewrite zshrc
 zsh_location = f"{os.getenv('HOME')}/.testrc"
 with open(zsh_location, "w") as z:
+    print("Rewriting .zshrc...")
     for k, v in config_file["shell"].items():
         if k == "name":
             print(f"# This is a config file for the {v} shell.\n", file=z)
@@ -161,5 +162,11 @@ with open(zsh_location, "w") as z:
             print(f"source {v}\n", file=z)
         if k == "alias":
             print("# Aliases file", file=z)
-            print(f"source {v}\n", file=z)
-
+            print(f"source {v}", file=z)
+    print("Done!")
+# Deal with the multiplexer
+for k, v in config_file["shell"]["multiplexer"].items():
+    print("Copying the multiplexer configuration files")
+    if k == "config":
+        shutil.copyfile(f"{axioms_dir}/{v}", f"{os.getenv('HOME')}/.tmobile.conf")
+    print("Done!")
