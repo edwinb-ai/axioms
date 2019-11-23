@@ -2,6 +2,7 @@ import toml, requests
 import subprocess as sbp
 from typing import List, Optional
 import os, zipfile, io, gzip, tarfile
+import shlex
 
 
 def create_programs_dir(name: Optional[str] = "programs") -> None:
@@ -106,7 +107,8 @@ for m in config_file["languages"].values():
     for i in m:
         for k, v in i.items():
             # Create a temporary list to store the full command
-            tmp_list = basic_command.copy()
+            # tmp_list = basic_command.copy()
+            tmp_list = "sudo apt install".split(" ")
             tmp_list.append(v)
 
             # Try first by name
@@ -122,9 +124,9 @@ for m in config_file["languages"].values():
                 download_and_decompress(v)
             # Sometimes, these have scripts
             if k == "script":
-                # TODO: Parse scripts correctly, not currently working
                 try:
-                    sbp.run(v.split(" "), check=True)
+                    r = sbp.run(v, shell=True, check=True)
+                    print(r)
                 except sbp.CalledProcessError:
                     print("Couldn't execute script.")
 
