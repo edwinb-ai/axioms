@@ -5,7 +5,7 @@ name = "Edwin Bedolla"
 
 [languages]
 langs = [
-    # {name = "julia", url = "https://julialang-s3.julialang.org/bin/linux/x64/1.2/julia-1.2.0-linux-x86_64.tar.gz"},
+    {name = "julia", url = "https://julialang-s3.julialang.org/bin/linux/x64/1.2/julia-1.2.0-linux-x86_64.tar.gz"},
     {name = "rust", script = "curl --proto \"=https\" --tlsv1.2 -sSf https://sh.rustup.rs | sh"}
 ]
 
@@ -47,8 +47,8 @@ alias = "shell/aliases.zsh"
     config = "shell/tmux.conf"
 
 [github]
-"user.name" = "edwinb-ai"
-"user.email" = "developeredwin@gmail.com"
+name = "edwinb-ai"
+email = "developeredwin@gmail.com"
 
 [editor]
 name = "visual studio code"
