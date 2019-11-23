@@ -1,6 +1,5 @@
-import toml
+import toml, requests
 import subprocess as sbp
-import requests
 from typing import List, Optional
 import os, zipfile, io, gzip, tarfile
 
@@ -19,14 +18,51 @@ def create_programs_dir(name: Optional[str] = "programs") -> None:
         pass
 
 
-def parse_with_url(programs: List, command: List):
-    # First, create a special directory to store everything
-    create_programs_dir()
-    os.chdir(f"{os.getenv('HOME')}/programs")
+def download_and_decompress(url: str) -> None:
+    """Download a zip or tar gzip file with its URL and
+    decompress it in the current working directory.
+    """
+    if "zip" in url:
+        r = requests.get(url)
+        if r.status_code == requests.codes.ok:
+            print("Downloading the file...")
+            print("Extracting the file...")
+            z = zipfile.ZipFile(io.BytesIO(r.content))
+            z.extractall()
+            print("Done!")
+        else:
+            raise requests.HTTPError("Could not download the file!")
 
-    # Then, traverse the list with the programs
+    elif ".tar.gz" in url:
+        r = requests.get(url, stream=True)
+        if r.status_code == requests.codes.ok:
+            print("Downloading the file...")
+            print("Extracting the file...")
+            with gzip.open(r.raw) as g:
+                t = tarfile.TarFile(fileobj=g)
+                t.extractall()
+            print("Done!")
+        else:
+            raise requests.HTTPError("Could not download the file!")
+
+    else:
+        raise Exception("Couldn't handle the file, no method available for it.")
+
+
+def parse_with_url(programs: List[str], command: List[str]) -> None:
+    """Take in a list of strings and a command in list form,
+    and traverse it.
+    
+    It will try to apply the command to every program in the list,
+    if it fails, it will try to use its URL to download it from the
+    internet.
+
+    In case it's a git repository, it will only clone it. If it's a
+    compressed file, it will download it and decompress it.
+    """
     for p in programs:
         for k, v in p.items():
+            # Create a temporary list to store the full command
             tmp_list = command.copy()
             tmp_list.append(v)
             print(f"searching for {v}")
@@ -39,49 +75,41 @@ def parse_with_url(programs: List, command: List):
                     continue
             if k == "url":
                 if ".git" in v:
+                    # The command is different now, we must clone each repo
                     tmp_list = "git clone".split(" ")
                     tmp_list.append(v)
                     try:
-                        print("Trying to clone the repository...")
+                        print("Trying to clone the following repository...")
+                        print(f"{tmp_list}")
                         sbp.run(tmp_list, check=True)
                         print("Done!")
                     except sbp.CalledProcessError:
                         print("Could not clone the repository.")
-                if "zip" in v:
-                    r = requests.get(v)
-                    if r.status_code == requests.codes.ok:
-                        print("Downloading the file...")
-                        print("Extracting the file...")
-                        z = zipfile.ZipFile(io.BytesIO(r.content))
-                        z.extractall()
-                        print("Done!")
-                    else:
-                        raise requests.HTTPError("Could not download the file!")
-                if ".tar.gz" in v:
-                    r = requests.get(v, stream=True)
-                    if r.status_code == requests.codes.ok:
-                        print("Downloading the file...")
-                        print("Extracting the file...")
-                        with gzip.open(r.raw) as g:
-                            t = tarfile.TarFile(fileobj=g)
-                            t.extractall()
-                        print("Done!")
-                    else:
-                        raise requests.HTTPError("Could not download the file!")
+                # If the files are compressed, download and decompress
+                download_and_decompress(v)
 
+
+# * Begin parsing
 # Load the configuration file and save it as a dictionary
 config_file = toml.load("master-config.toml")
 
 # Master command to install most things
 basic_command = ["sudo", "eopkg", "it"]
 
+# First, create a special directory to store everything
+# and change the current directory to it
+create_programs_dir()
+os.chdir(f"{os.getenv('HOME')}/programs")
+
 # * Languages
-# TODO: Change to directory
 for m in config_file["languages"].values():
     for i in m:
         for k, v in i.items():
-            tmp_list = "sudo apt install".split(" ")
+            # Create a temporary list to store the full command
+            tmp_list = basic_command.copy()
             tmp_list.append(v)
+
+            # Try first by name
             if k == "name":
                 try:
                     sbp.run(tmp_list, check=True)
@@ -89,18 +117,10 @@ for m in config_file["languages"].values():
                     print("Not available in repositories or rejected by the user.")
                     print("Trying with the URL.")
                     continue
+            # If not, try by url
             if k == "url":
-                if ".tar.gz" in v:
-                    r = requests.get(v, stream=True)
-                    if r.status_code == requests.codes.ok:
-                        print("Downloading the file...")
-                        print("Extracting the file...")
-                        with gzip.open(r.raw) as g:
-                            t = tarfile.TarFile(fileobj=g)
-                            t.extractall()
-                        print("Done!")
-                    else:
-                        raise requests.HTTPError("Could not download the file!")
+                download_and_decompress(v)
+            # Sometimes, these have scripts
             if k == "script":
                 # TODO: Parse scripts correctly, not currently working
                 try:
