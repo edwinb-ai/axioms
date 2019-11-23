@@ -47,8 +47,7 @@ alias = "shell/aliases.zsh"
     config = "shell/tmux.conf"
 
 [github]
-name = "edwinb-ai"
-email = "developeredwin@gmail.com"
+file = "git/gitconfig"
 
 [editor]
 name = "visual studio code"

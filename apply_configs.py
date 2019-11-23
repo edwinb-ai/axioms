@@ -106,50 +106,50 @@ create_programs_dir()
 os.chdir(f"{os.getenv('HOME')}/programs")
 
 # * Languages
-# for m in config_file["languages"].values():
-#     for i in m:
-#         for k, v in i.items():
-#             # Create a temporary list to store the full command
-#             tmp_list = basic_command.copy()
-#             # tmp_list = "sudo apt install".split(" ")
-#             tmp_list.append(v)
+for m in config_file["languages"].values():
+    for i in m:
+        for k, v in i.items():
+            # Create a temporary list to store the full command
+            tmp_list = basic_command.copy()
+            # tmp_list = "sudo apt install".split(" ")
+            tmp_list.append(v)
 
-#             # Try first by name
-#             if k == "name":
-#                 try:
-#                     sbp.run(tmp_list, check=True)
-#                 except sbp.CalledProcessError:
-#                     print("Not available in repositories or rejected by the user.")
-#                     print("Trying with the URL.")
-#                     continue
+            # Try first by name
+            if k == "name":
+                try:
+                    sbp.run(tmp_list, check=True)
+                except sbp.CalledProcessError:
+                    print("Not available in repositories or rejected by the user.")
+                    print("Trying with the URL.")
+                    continue
 
-#             # If not, try by url
-#             if k == "url":
-#                 download_and_decompress(v)
-#             # Sometimes, these have scripts
-#             if k == "script":
-#                 try:
-#                     r = sbp.run(v, shell=True, check=True)
-#                     print(r)
-#                 except sbp.CalledProcessError:
-#                     print("Couldn't execute script.")
+            # If not, try by url
+            if k == "url":
+                download_and_decompress(v)
+            # Sometimes, these have scripts
+            if k == "script":
+                try:
+                    r = sbp.run(v, shell=True, check=True)
+                    print(r)
+                except sbp.CalledProcessError:
+                    print("Couldn't execute script.")
 
 # * PROGRAMS
-# for k, v in config_file["programs"].items():
-#     # * Base programs
-#     if k == "base":
-#         sbp.run(basic_command + v)
-#     # * Special programs
-#     if k == "special":
-#         parse_with_url(v, "sudo apt install".split(" "))
+for k, v in config_file["programs"].items():
+    # * Base programs
+    if k == "base":
+        sbp.run(basic_command + v)
+    # * Special programs
+    if k == "special":
+        parse_with_url(v, "sudo apt install".split(" "))
 
 # * Shell
 # Grab the oh-my-zsh installation script
-# omf_file = requests.get(
-#     "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
-# )
-# # Execute it
-# sbp.run(["sh", "-c", omf_file.text])
+omf_file = requests.get(
+    "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
+)
+# Execute it
+sbp.run(["sh", "-c", omf_file.text])
 # Rewrite zshrc
 zsh_location = f"{os.getenv('HOME')}/.testrc"
 with open(zsh_location, "w") as z:
@@ -170,3 +170,6 @@ for k, v in config_file["shell"]["multiplexer"].items():
     if k == "config":
         shutil.copyfile(f"{axioms_dir}/{v}", f"{os.getenv('HOME')}/.tmobile.conf")
     print("Done!")
+
+# * Github configuration
+# TODO: Copy the gitconfig file to it's respective place
