@@ -50,10 +50,10 @@ alias = "shell/aliases.zsh"
 file = "git/gitconfig"
 
 [editor]
-name = "visual studio code"
+name = "Visual Studio Code"
 extensions = "vscode-settings/extensions.toml"
 settings = "vscode-settings/settings.json"
 
 [terminal]
-name = "alacritty"
-config = {source = "terminal/alacritty.yml", destination = ["HOME", "/.config/alacritty/"]}
+name = "Alacritty"
+config = "terminal/alacritty.yml"

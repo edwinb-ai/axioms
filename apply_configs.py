@@ -90,6 +90,25 @@ def parse_with_url(programs: List[str], command: List[str]) -> None:
                 download_and_decompress(v)
 
 
+def try_copy(source, destination):
+    print("Copying config files...")
+    try:
+        # shutil.copyfile(f"{axioms_dir}/{v}", destination)
+        shutil.copy(f"{source}", f"{destination}")
+        print("Done!")
+    except FileNotFoundError:
+        print(f"There is no such directory {destination}, check again.")
+
+
+def check_if_program(name, destination, true):
+    if name == true:
+        print(f"Configuration files will be copied to {destination}")
+        return True
+    else:
+        print(f"Not {true}, skipping this step...")
+        return False
+
+
 # * Begin parsing
 # # Load the configuration file and save it as a dictionary
 # config_file = toml.load("master-config.toml")
@@ -172,16 +191,18 @@ def parse_shell(config_file, axioms_dir):
     # Deal with the multiplexer
     for k, v in config_file["shell"]["multiplexer"].items():
         print("Copying the multiplexer configuration files")
+        destination = f"{os.getenv('HOME')}/.tmux.conf"
         if k == "config":
-            shutil.copyfile(f"{axioms_dir}/{v}", f"{os.getenv('HOME')}/.tmux.conf")
+            try_copy(f"{axioms_dir}/{v}", destination)
         print("Done!")
 
 
 # * Github configuration
 def git_configuration(config_file, axioms_dir):
     for k, v in config_file["github"].items():
+        destination = f"{os.getenv('HOME')}/.gitconfig"
         if k == "file":
-            shutil.copyfile(f"{axioms_dir}/{v}", f"{os.getenv('HOME')}/.gitconfig")
+            try_copy(f"{axioms_dir}/{v}", destination)
 
 
 # * Visual Studio Code
@@ -190,13 +211,10 @@ def parse_editor(config_file, axioms_dir):
         # First, check to see if the editor is VSCode
         destination = f"{os.getenv('HOME')}/.config/Code/User/"
         if k == "name":
-            if v == "visual studio code":
-                print(f"Configuration files will be copied to {destination}")
-                # Continue to the settings and extensions parsing
+            is_program = check_if_program(v, destination, "Visual Studio Code")
+            if is_program:
                 continue
             else:
-                print("Not Visual Studio Code, skipping this step...")
-                # Quit the for-loop because this is not VSCode
                 break
         # Next, install the respective extensions
         if k == "extensions":
@@ -217,15 +235,16 @@ def parse_editor(config_file, axioms_dir):
             print("Done!")
         # Finally, copy the specified configurations
         if k == "settings":
-            print("Copying config files...")
-            try:
-                shutil.copyfile(f"{axioms_dir}/{v}", destination)
-                print("Done!")
-            except FileNotFoundError:
-                print(f"There is no such directory {destination}, check again.")
-                pass
+            try_copy(f"{axioms_dir}/{v}", destination)
 
 
-# TODO: Parse the terminal configuration file
-def install_terminal():
-    pass
+def config_terminal(config_file, axioms_dir):
+    for k, v in config_file["terminal"].items():
+        destination = f"{os.getenv('HOME')}/.config/alacritty/"
+        if k == "name":
+            if is_program := check_if_program(v, destination, "Alacritty"):
+                continue
+            else:
+                break
+        if k == "config":
+            try_copy(f"{axioms_dir}/{v}", "/tmp")
