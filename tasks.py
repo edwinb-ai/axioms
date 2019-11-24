@@ -39,6 +39,7 @@ def progams(c):
 
 
 # * Shell
+@task
 def shell(c):
     config_file, _, axioms_dir = setup()
     parse_shell(config_file, axioms_dir)
