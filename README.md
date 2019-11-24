@@ -34,6 +34,8 @@ For now, this only works for the [Solus Linux](https://getsol.us/home/) distribu
 as it is assumed that the `eopkg` manager is the default one. Maybe, in the future, could
 more package managers be supported.
 
+## Python version and environment
+
 `python 3.8` is **compulsory** as the new [walrus operator](https://www.python.org/dev/peps/pep-0572/)
 is employed. For this purpose, a `pyproject.toml` is bundled to be used by [`poetry`](https://poetry.eustace.io/)
-or just to be more readable that a `setup.py`.
+or just to be more readable than a `setup.py` or `requirements.txt` files.
