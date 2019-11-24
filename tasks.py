@@ -39,3 +39,9 @@ def git(c):
 def terminal(c):
     config_file, _, axioms_dir = setup()
     config_terminal(config_file, axioms_dir)
+
+
+@task
+def test(c):
+    print("Just testing")
+

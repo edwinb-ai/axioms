@@ -17,7 +17,7 @@ echo "$ANACONDAENV environment created!";
 
 # In the new environment, install the necessary packages
 echo "Installing Python packages for the installation";
-pip install toml requests
+pip install toml requests invoke
 echo "Done!";
 
 # And run the configuration script
