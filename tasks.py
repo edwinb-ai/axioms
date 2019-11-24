@@ -1,5 +1,5 @@
 from invoke import task
-from apply_configs import parse_editor, create_programs_dir
+from apply_configs import parse_editor, create_programs_dir, git_configuration
 import toml, os
 
 
@@ -26,3 +26,8 @@ def setup():
 def editor(c):
     config_file, basic_command, axioms_dir = setup()
     parse_editor(config_file, axioms_dir)
+
+@task
+def git(c):
+    config_file, basic_command, axioms_dir = setup()
+    git_configuration(config_file, axioms_dir)

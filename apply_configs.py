@@ -178,8 +178,11 @@ def parse_shell(config_file, axioms_dir):
 
 
 # * Github configuration
-# TODO: Parse the configuration file correctly, missing the values
-# shutil.copyfile(f"{axioms_dir}/{v}", f"{os.getenv('HOME')}/.gitconfig")
+def git_configuration(config_file, axioms_dir):
+    for k, v in config_file["github"].items():
+        if k == "file":
+            shutil.copyfile(f"{axioms_dir}/{v}", f"{os.getenv('HOME')}/.gitconfig")
+
 
 # * Visual Studio Code
 def parse_editor(config_file, axioms_dir):
@@ -203,7 +206,7 @@ def parse_editor(config_file, axioms_dir):
             # Look for the extensions section and loop over
             for m, n in ext_file["extensions"].items():
                 if m == "names":
-                    install_command = "echo --install-extension --force".split(" ")
+                    install_command = "code --install-extension --force".split(" ")
                     # The extensions are a list to loop over
                     for e in n:
                         tmp_list = install_command.copy()
@@ -213,7 +216,6 @@ def parse_editor(config_file, axioms_dir):
         # Finally, copy the specified configurations
         if k == "settings":
             print("Copying config files...")
-            # shutil.copyfile(f"{axioms_dir}/{v}", destination)
-            shutil.copy(f"{axioms_dir}/{v}", "/tmp/")
+            shutil.copyfile(f"{axioms_dir}/{v}", destination)
             print("Done!")
 
