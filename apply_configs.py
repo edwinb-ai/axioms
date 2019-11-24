@@ -206,16 +206,21 @@ def parse_editor(config_file, axioms_dir):
             # Look for the extensions section and loop over
             for m, n in ext_file["extensions"].items():
                 if m == "names":
-                    install_command = "code --install-extension --force".split(" ")
+                    install_command = "code --install-extension".split(" ")
                     # The extensions are a list to loop over
                     for e in n:
                         tmp_list = install_command.copy()
                         tmp_list.append(e)
+                        # Do not prompt for approval
+                        tmp_list.append("--force")
                         sbp.run(tmp_list)
             print("Done!")
         # Finally, copy the specified configurations
         if k == "settings":
             print("Copying config files...")
-            shutil.copyfile(f"{axioms_dir}/{v}", destination)
-            print("Done!")
-
+            try:
+                shutil.copyfile(f"{axioms_dir}/{v}", destination)
+                print("Done!")
+            except FileNotFoundError:
+                print(f"There is no such directory {destination}, check again.")
+                pass
