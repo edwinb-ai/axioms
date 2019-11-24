@@ -224,3 +224,8 @@ def parse_editor(config_file, axioms_dir):
             except FileNotFoundError:
                 print(f"There is no such directory {destination}, check again.")
                 pass
+
+
+# TODO: Parse the terminal configuration file
+def install_terminal():
+    pass
