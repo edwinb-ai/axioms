@@ -5,21 +5,7 @@ import os, zipfile, io, gzip, tarfile
 import shutil
 
 
-def create_programs_dir(name: Optional[str] = "programs") -> None:
-    """Try to create a special directory to store most of the programs
-    and utilities needed.
-    """
-    try:
-        programs_dir = f"{os.getenv('HOME')}/{name}"
-        print(f"Trying to create the following directory {programs_dir}")
-        os.mkdir(programs_dir)
-        print(f"Successfully created!")
-    except FileExistsError:
-        print("Because the directory exists, nothing will be done.")
-        pass
-
-
-def download_and_decompress(url: str) -> None:
+def _download_and_decompress(url: str) -> None:
     """Download a zip or tar gzip file with its URL and
     decompress it in the current working directory.
     """
@@ -50,7 +36,7 @@ def download_and_decompress(url: str) -> None:
         raise Exception("Couldn't handle the file, no method available for it.")
 
 
-def parse_with_url(programs: List[str], command: List[str]) -> None:
+def _parse_with_url(programs: List[str], command: List[str]) -> None:
     """Take in a list of strings and a command in list form,
     and traverse it.
     
@@ -87,10 +73,10 @@ def parse_with_url(programs: List[str], command: List[str]) -> None:
                     except sbp.CalledProcessError:
                         print("Could not clone the repository.")
                 # If the files are compressed, download and decompress
-                download_and_decompress(v)
+                _download_and_decompress(v)
 
 
-def try_copy(source: str, destination: str) -> None:
+def _try_copy(source: str, destination: str) -> None:
     """Try to copy a file, if it can't be found, 
     the error is catched and further manipulation is needed.
     """
@@ -103,7 +89,7 @@ def try_copy(source: str, destination: str) -> None:
         print(f"There is no such directory {destination}, check again.")
 
 
-def check_if_program(name: str, destination: str, true: str) -> bool:
+def _check_if_program(name: str, destination: str, true: str) -> bool:
     """Checks if the name corresponds to the true value, if so,
     is uses the destination for that program for files to be copied.
     """
@@ -114,6 +100,18 @@ def check_if_program(name: str, destination: str, true: str) -> bool:
         print(f"Not {true}, skipping this step...")
         return False
 
+def create_programs_dir(name: Optional[str] = "programs") -> None:
+    """Try to create a special directory to store most of the programs
+    and utilities needed.
+    """
+    try:
+        programs_dir = f"{os.getenv('HOME')}/{name}"
+        print(f"Trying to create the following directory {programs_dir}")
+        os.mkdir(programs_dir)
+        print(f"Successfully created!")
+    except FileExistsError:
+        print("Because the directory exists, nothing will be done.")
+        pass
 
 # * Languages
 def install_programming_langs(config_file: Dict, basic_command: List) -> None:
@@ -136,7 +134,7 @@ def install_programming_langs(config_file: Dict, basic_command: List) -> None:
 
                 # If not, try by url
                 if k == "url":
-                    download_and_decompress(v)
+                    _download_and_decompress(v)
                 # Sometimes, these have scripts
                 if k == "script":
                     try:
@@ -146,7 +144,7 @@ def install_programming_langs(config_file: Dict, basic_command: List) -> None:
                         print("Couldn't execute script.")
 
 
-# * PROGRAMS
+# * Programs
 def install_programs(config_file: Dict, basic_command: List) -> None:
     for k, v in config_file["programs"].items():
         # * Base programs
@@ -154,7 +152,7 @@ def install_programs(config_file: Dict, basic_command: List) -> None:
             sbp.run(basic_command + v)
         # * Special programs
         if k == "special":
-            parse_with_url(v, "sudo apt install".split(" "))
+            _parse_with_url(v, "sudo apt install".split(" "))
 
 
 # * Shell
