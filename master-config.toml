@@ -52,7 +52,7 @@ file = "git/gitconfig"
 [editor]
 name = "visual studio code"
 extensions = "vscode-settings/extensions.toml"
-settings = {source = "vscode-settings/settings.json", destination = ["HOME", "/.config/Code/User/"]}
+settings = "vscode-settings/settings.json"
 
 [terminal]
 name = "alacritty"

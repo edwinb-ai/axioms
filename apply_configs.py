@@ -91,85 +91,129 @@ def parse_with_url(programs: List[str], command: List[str]) -> None:
 
 
 # * Begin parsing
-# Load the configuration file and save it as a dictionary
-config_file = toml.load("master-config.toml")
+# # Load the configuration file and save it as a dictionary
+# config_file = toml.load("master-config.toml")
 
-# Master command to install most things
-basic_command = ["sudo", "eopkg", "it"]
+# # Master command to install most things
+# basic_command = ["sudo", "eopkg", "it"]
 
-# Save the axioms directory
-axioms_dir = os.getcwd()
+# # Save the axioms directory
+# axioms_dir = os.getcwd()
 
-# First, create a special directory to store everything
-# and change the current directory to it
-create_programs_dir()
-os.chdir(f"{os.getenv('HOME')}/programs")
+# # First, create a special directory to store everything
+# # and change the current directory to it
+# create_programs_dir()
+# os.chdir(f"{os.getenv('HOME')}/programs")
 
 # * Languages
-for m in config_file["languages"].values():
-    for i in m:
-        for k, v in i.items():
-            # Create a temporary list to store the full command
-            tmp_list = basic_command.copy()
-            # tmp_list = "sudo apt install".split(" ")
-            tmp_list.append(v)
+def install_programming_langs(config_file, basic_command):
+    for m in config_file["languages"].values():
+        for i in m:
+            for k, v in i.items():
+                # Create a temporary list to store the full command
+                tmp_list = basic_command.copy()
+                # tmp_list = "sudo apt install".split(" ")
+                tmp_list.append(v)
 
-            # Try first by name
-            if k == "name":
-                try:
-                    sbp.run(tmp_list, check=True)
-                except sbp.CalledProcessError:
-                    print("Not available in repositories or rejected by the user.")
-                    print("Trying with the URL.")
-                    continue
+                # Try first by name
+                if k == "name":
+                    try:
+                        sbp.run(tmp_list, check=True)
+                    except sbp.CalledProcessError:
+                        print("Not available in repositories or rejected by the user.")
+                        print("Trying with the URL.")
+                        continue
 
-            # If not, try by url
-            if k == "url":
-                download_and_decompress(v)
-            # Sometimes, these have scripts
-            if k == "script":
-                try:
-                    r = sbp.run(v, shell=True, check=True)
-                    print(r)
-                except sbp.CalledProcessError:
-                    print("Couldn't execute script.")
+                # If not, try by url
+                if k == "url":
+                    download_and_decompress(v)
+                # Sometimes, these have scripts
+                if k == "script":
+                    try:
+                        r = sbp.run(v, shell=True, check=True)
+                        print(r)
+                    except sbp.CalledProcessError:
+                        print("Couldn't execute script.")
+
 
 # * PROGRAMS
-for k, v in config_file["programs"].items():
-    # * Base programs
-    if k == "base":
-        sbp.run(basic_command + v)
-    # * Special programs
-    if k == "special":
-        parse_with_url(v, "sudo apt install".split(" "))
+def install_programs(config_file, basic_command):
+    for k, v in config_file["programs"].items():
+        # * Base programs
+        if k == "base":
+            sbp.run(basic_command + v)
+        # * Special programs
+        if k == "special":
+            parse_with_url(v, "sudo apt install".split(" "))
+
 
 # * Shell
-# Grab the oh-my-zsh installation script
-omf_file = requests.get(
-    "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
-)
-# Execute it
-sbp.run(["sh", "-c", omf_file.text])
-# Rewrite zshrc
-zsh_location = f"{os.getenv('HOME')}/.zshrc"
-with open(zsh_location, "w") as z:
-    print("Rewriting .zshrc...")
-    for k, v in config_file["shell"].items():
-        if k == "name":
-            print(f"# This is a config file for the {v} shell.\n", file=z)
+def parse_shell(config_file, axioms_dir):
+    # Grab the oh-my-zsh installation script
+    omf_file = requests.get(
+        "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
+    )
+    # Execute it
+    sbp.run(["sh", "-c", omf_file.text])
+    # Rewrite zshrc
+    zsh_location = f"{os.getenv('HOME')}/.zshrc"
+    with open(zsh_location, "w") as z:
+        print("Rewriting .zshrc...")
+        for k, v in config_file["shell"].items():
+            if k == "name":
+                print(f"# This is a config file for the {v} shell.\n", file=z)
+            if k == "config":
+                print("# Global configuration file", file=z)
+                print(f"source {v}\n", file=z)
+            if k == "alias":
+                print("# Aliases file", file=z)
+                print(f"source {v}", file=z)
+        print("Done!")
+    # Deal with the multiplexer
+    for k, v in config_file["shell"]["multiplexer"].items():
+        print("Copying the multiplexer configuration files")
         if k == "config":
-            print("# Global configuration file", file=z)
-            print(f"source {v}\n", file=z)
-        if k == "alias":
-            print("# Aliases file", file=z)
-            print(f"source {v}", file=z)
-    print("Done!")
-# Deal with the multiplexer
-for k, v in config_file["shell"]["multiplexer"].items():
-    print("Copying the multiplexer configuration files")
-    if k == "config":
-        shutil.copyfile(f"{axioms_dir}/{v}", f"{os.getenv('HOME')}/.tmux.conf")
-    print("Done!")
+            shutil.copyfile(f"{axioms_dir}/{v}", f"{os.getenv('HOME')}/.tmux.conf")
+        print("Done!")
+
 
 # * Github configuration
-shutil.copyfile(f"{axioms_dir}/{v}", f"{os.getenv('HOME')}/.gitconfig")
+# TODO: Parse the configuration file correctly, missing the values
+# shutil.copyfile(f"{axioms_dir}/{v}", f"{os.getenv('HOME')}/.gitconfig")
+
+# * Visual Studio Code
+def parse_editor(config_file, axioms_dir):
+    for k, v in config_file["editor"].items():
+        # First, check to see if the editor is VSCode
+        destination = f"{os.getenv('HOME')}/.config/Code/User/"
+        if k == "name":
+            if v == "visual studio code":
+                print(f"Configuration files will be copied to {destination}")
+                # Continue to the settings and extensions parsing
+                continue
+            else:
+                print("Not Visual Studio Code, skipping this step...")
+                # Quit the for-loop because this is not VSCode
+                break
+        # Next, install the respective extensions
+        if k == "extensions":
+            print("Installing extensions...")
+            # Read the extensions file from the repo
+            ext_file = toml.load(f"{axioms_dir}/{v}")
+            # Look for the extensions section and loop over
+            for m, n in ext_file["extensions"].items():
+                if m == "names":
+                    install_command = "echo --install-extension --force".split(" ")
+                    # The extensions are a list to loop over
+                    for e in n:
+                        tmp_list = install_command.copy()
+                        tmp_list.append(e)
+                        sbp.run(tmp_list)
+            print("Done!")
+        # Finally, copy the specified configurations
+        if k == "settings":
+            print("Copying config files...")
+            # shutil.copyfile(f"{axioms_dir}/{v}", destination)
+            shutil.copy(f"{axioms_dir}/{v}", "/tmp/")
+            print("Done!")
+
