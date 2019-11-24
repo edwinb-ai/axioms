@@ -1,6 +1,6 @@
 import toml, requests
 import subprocess as sbp
-from typing import List, Optional
+from typing import List, Optional, Dict
 import os, zipfile, io, gzip, tarfile
 import shutil
 
@@ -90,7 +90,10 @@ def parse_with_url(programs: List[str], command: List[str]) -> None:
                 download_and_decompress(v)
 
 
-def try_copy(source, destination):
+def try_copy(source: str, destination: str) -> None:
+    """Try to copy a file, if it can't be found, 
+    the error is catched and further manipulation is needed.
+    """
     print("Copying config files...")
     try:
         # shutil.copyfile(f"{axioms_dir}/{v}", destination)
@@ -100,7 +103,10 @@ def try_copy(source, destination):
         print(f"There is no such directory {destination}, check again.")
 
 
-def check_if_program(name, destination, true):
+def check_if_program(name: str, destination: str, true: str) -> bool:
+    """Checks if the name corresponds to the true value, if so,
+    is uses the destination for that program for files to be copied.
+    """
     if name == true:
         print(f"Configuration files will be copied to {destination}")
         return True
@@ -109,23 +115,8 @@ def check_if_program(name, destination, true):
         return False
 
 
-# * Begin parsing
-# # Load the configuration file and save it as a dictionary
-# config_file = toml.load("master-config.toml")
-
-# # Master command to install most things
-# basic_command = ["sudo", "eopkg", "it"]
-
-# # Save the axioms directory
-# axioms_dir = os.getcwd()
-
-# # First, create a special directory to store everything
-# # and change the current directory to it
-# create_programs_dir()
-# os.chdir(f"{os.getenv('HOME')}/programs")
-
 # * Languages
-def install_programming_langs(config_file, basic_command):
+def install_programming_langs(config_file: Dict, basic_command: List) -> None:
     for m in config_file["languages"].values():
         for i in m:
             for k, v in i.items():
@@ -156,7 +147,7 @@ def install_programming_langs(config_file, basic_command):
 
 
 # * PROGRAMS
-def install_programs(config_file, basic_command):
+def install_programs(config_file: Dict, basic_command: List) -> None:
     for k, v in config_file["programs"].items():
         # * Base programs
         if k == "base":
@@ -167,7 +158,7 @@ def install_programs(config_file, basic_command):
 
 
 # * Shell
-def parse_shell(config_file, axioms_dir):
+def parse_shell(config_file: Dict, axioms_dir: str) -> None:
     # Grab the oh-my-zsh installation script
     omf_file = requests.get(
         "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
@@ -198,7 +189,7 @@ def parse_shell(config_file, axioms_dir):
 
 
 # * Github configuration
-def git_configuration(config_file, axioms_dir):
+def git_configuration(config_file: Dict, axioms_dir: str) -> None:
     for k, v in config_file["github"].items():
         destination = f"{os.getenv('HOME')}/.gitconfig"
         if k == "file":
@@ -206,13 +197,12 @@ def git_configuration(config_file, axioms_dir):
 
 
 # * Visual Studio Code
-def parse_editor(config_file, axioms_dir):
+def parse_editor(config_file: Dict, axioms_dir: str) -> None:
     for k, v in config_file["editor"].items():
         # First, check to see if the editor is VSCode
         destination = f"{os.getenv('HOME')}/.config/Code/User/"
         if k == "name":
-            is_program = check_if_program(v, destination, "Visual Studio Code")
-            if is_program:
+            if is_program := check_if_program(v, destination, "Visual Studio Code"):
                 continue
             else:
                 break
@@ -238,7 +228,8 @@ def parse_editor(config_file, axioms_dir):
             try_copy(f"{axioms_dir}/{v}", destination)
 
 
-def config_terminal(config_file, axioms_dir):
+# * Terminal
+def config_terminal(config_file: Dict, axioms_dir: str) -> None:
     for k, v in config_file["terminal"].items():
         destination = f"{os.getenv('HOME')}/.config/alacritty/"
         if k == "name":
@@ -247,4 +238,4 @@ def config_terminal(config_file, axioms_dir):
             else:
                 break
         if k == "config":
-            try_copy(f"{axioms_dir}/{v}", "/tmp")
+            try_copy(f"{axioms_dir}/{v}", destination)

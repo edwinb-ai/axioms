@@ -33,3 +33,7 @@ If one simply wants the configuration to be applied, `apply_configs.py` should b
 For now, this only works for the [Solus Linux](https://getsol.us/home/) distribution,
 as it is assumed that the `eopkg` manager is the default one. Maybe, in the future, could
 more package managers be supported.
+
+`python 3.8` is **compulsory** as the new [walrus operator](https://www.python.org/dev/peps/pep-0572/)
+is employed. For this purpose, a `pyproject.toml` is bundled to be used by [`poetry`](https://poetry.eustace.io/)
+or just to be more readable that a `setup.py`.
