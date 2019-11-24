@@ -151,7 +151,7 @@ omf_file = requests.get(
 # Execute it
 sbp.run(["sh", "-c", omf_file.text])
 # Rewrite zshrc
-zsh_location = f"{os.getenv('HOME')}/.testrc"
+zsh_location = f"{os.getenv('HOME')}/.zshrc"
 with open(zsh_location, "w") as z:
     print("Rewriting .zshrc...")
     for k, v in config_file["shell"].items():
@@ -168,8 +168,8 @@ with open(zsh_location, "w") as z:
 for k, v in config_file["shell"]["multiplexer"].items():
     print("Copying the multiplexer configuration files")
     if k == "config":
-        shutil.copyfile(f"{axioms_dir}/{v}", f"{os.getenv('HOME')}/.tmobile.conf")
+        shutil.copyfile(f"{axioms_dir}/{v}", f"{os.getenv('HOME')}/.tmux.conf")
     print("Done!")
 
 # * Github configuration
-# TODO: Copy the gitconfig file to it's respective place
+shutil.copyfile(f"{axioms_dir}/{v}", f"{os.getenv('HOME')}/.gitconfig")
