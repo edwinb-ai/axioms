@@ -26,7 +26,8 @@ packaged with this repository.
 
 When using for the **first time**, `install.sh` should be used to *bootstrap* everything.
 
-If one simply wants the configuration to be applied, `apply_configs.py` should be used.
+If one simply wants the configuration to be applied, the `tasks.py` file takes care of updating or
+installing everything in a modular fashion.
 
 ## Target platform
 
