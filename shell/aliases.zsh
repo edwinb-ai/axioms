@@ -7,7 +7,7 @@ alias zshup="source ~/.zshrc"
 alias lgl="exa -l --git --header"
 alias lga="exa --grid --across --header --long"
 
-# server Sastre
+# server
 alias educk="ssh edwin@148.214.16.183"
 
 # ddgr
