@@ -152,7 +152,7 @@ def install_programs(config_file: Dict, basic_command: List) -> None:
             sbp.run(basic_command + v)
         # * Special programs
         if k == "special":
-            _parse_with_url(v, "sudo apt install".split(" "))
+            _parse_with_url(v, basic_command)
 
 
 # * Shell
