@@ -182,7 +182,7 @@ def parse_shell(config_file: Dict, axioms_dir: str) -> None:
         print("Copying the multiplexer configuration files")
         destination = f"{os.getenv('HOME')}/.tmux.conf"
         if k == "config":
-            try_copy(f"{axioms_dir}/{v}", destination)
+            _try_copy(f"{axioms_dir}/{v}", destination)
         print("Done!")
 
 
@@ -191,7 +191,7 @@ def git_configuration(config_file: Dict, axioms_dir: str) -> None:
     for k, v in config_file["github"].items():
         destination = f"{os.getenv('HOME')}/.gitconfig"
         if k == "file":
-            try_copy(f"{axioms_dir}/{v}", destination)
+            _try_copy(f"{axioms_dir}/{v}", destination)
 
 
 # * Visual Studio Code
@@ -200,7 +200,7 @@ def parse_editor(config_file: Dict, axioms_dir: str) -> None:
         # First, check to see if the editor is VSCode
         destination = f"{os.getenv('HOME')}/.config/Code/User/"
         if k == "name":
-            if is_program := check_if_program(v, destination, "Visual Studio Code"):
+            if is_program := _check_if_program(v, destination, "Visual Studio Code"):
                 continue
             else:
                 break
@@ -223,7 +223,7 @@ def parse_editor(config_file: Dict, axioms_dir: str) -> None:
             print("Done!")
         # Finally, copy the specified configurations
         if k == "settings":
-            try_copy(f"{axioms_dir}/{v}", destination)
+            _try_copy(f"{axioms_dir}/{v}", destination)
 
 
 # * Terminal
@@ -231,9 +231,9 @@ def config_terminal(config_file: Dict, axioms_dir: str) -> None:
     for k, v in config_file["terminal"].items():
         destination = f"{os.getenv('HOME')}/.config/alacritty/"
         if k == "name":
-            if is_program := check_if_program(v, destination, "Alacritty"):
+            if is_program := _check_if_program(v, destination, "Alacritty"):
                 continue
             else:
                 break
         if k == "config":
-            try_copy(f"{axioms_dir}/{v}", destination)
+            _try_copy(f"{axioms_dir}/{v}", destination)
