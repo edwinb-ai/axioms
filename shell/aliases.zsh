@@ -14,4 +14,4 @@ alias educk="ssh edwin@148.214.16.183"
 alias bang="ddgr --gb --np"
 
 # Visual Studio Code
-alias code="vscode"
+alias code="code-oss"

@@ -209,7 +209,7 @@ def parse_editor(config_file: Dict, axioms_dir: str) -> None:
             # Look for the extensions section and loop over
             for m, n in ext_file["extensions"].items():
                 if m == "names":
-                    install_command = "vscode --install-extension".split(" ")
+                    install_command = "code-oss --install-extension".split(" ")
                     # The extensions are a list to loop over
                     for e in n:
                         tmp_list = install_command.copy()
