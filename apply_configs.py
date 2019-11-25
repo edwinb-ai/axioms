@@ -195,7 +195,7 @@ def git_configuration(config_file: Dict, axioms_dir: str) -> None:
 def parse_editor(config_file: Dict, axioms_dir: str) -> None:
     for k, v in config_file["editor"].items():
         # First, check to see if the editor is VSCode
-        destination = f"{os.getenv('HOME')}/.config/Code/User/"
+        destination = f"{os.getenv('HOME')}/.config/Code\ -\ OSS/User/"
         if k == "name":
             if is_program := _check_if_program(v, destination, "Visual Studio Code"):
                 continue

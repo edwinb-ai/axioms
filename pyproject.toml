@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "axioms"
-version = "0.4.3"
+version = "0.4.4"
 description = "Install all the necessary development programs and configuration files."
 authors = ["edwinb-ai <developeredwin@gmail.com>"]
 license = "BSD-2-Clause"
