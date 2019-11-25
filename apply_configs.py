@@ -20,7 +20,7 @@ def _download_and_decompress(url: str) -> None:
         else:
             raise requests.HTTPError("Could not download the file!")
 
-    elif ".tar.gz" in url:
+    if ".tar.gz" in url:
         r = requests.get(url, stream=True)
         if r.status_code == requests.codes.ok:
             print("Downloading the file...")
@@ -31,9 +31,6 @@ def _download_and_decompress(url: str) -> None:
             print("Done!")
         else:
             raise requests.HTTPError("Could not download the file!")
-
-    else:
-        raise Exception("Couldn't handle the file, no method available for it.")
 
 
 def _parse_with_url(programs: List[str], command: List[str]) -> None:
@@ -212,7 +209,7 @@ def parse_editor(config_file: Dict, axioms_dir: str) -> None:
             # Look for the extensions section and loop over
             for m, n in ext_file["extensions"].items():
                 if m == "names":
-                    install_command = "code-oss --install-extension".split(" ")
+                    install_command = "vscode --install-extension".split(" ")
                     # The extensions are a list to loop over
                     for e in n:
                         tmp_list = install_command.copy()
