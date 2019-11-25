@@ -65,9 +65,3 @@ def terminal(c):
     config_file, _, axioms_dir = setup()
     config_terminal(config_file, axioms_dir)
 
-
-# * Just a test task
-@task
-def test(c):
-    print("Just testing")
-

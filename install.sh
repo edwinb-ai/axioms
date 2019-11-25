@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Create a directory to store everything
+mkdir $HOME/programs/
+cd $HOME/programs/
+
 # Install anaconda
 echo "Installing Anaconda distribution"
 wget https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh;
@@ -20,9 +24,19 @@ echo "Installing Python packages for the installation";
 pip install toml requests invoke
 echo "Done!";
 
-# And run the configuration script
-echo "Running the configuration file!";
-python apply_configs.py
+# Run each task separately
+echo "Installing programming languages...";
+invoke languages
+echo "Installing programs...";
+invoke programs
+echo "Configuring shell...";
+invoke shell
+echo "Configuring editor...";
+invoke editor
+echo "Adding git configuration...";
+invoke git
+echo "Configuring terminal...";
+invoke terminal
 echo "Done!";
 
 # Finally, remove the environment
