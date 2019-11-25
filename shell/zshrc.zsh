@@ -32,8 +32,6 @@ plugins=(z git zsh-syntax-highlighting)
 # ==== FILES ==== #
 # Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
-# Load aliases
-source $ZSH_CUSTOM/aliases.zsh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
