@@ -3,11 +3,13 @@
 # Update everything from the start
 sudo apt update;
 
+PROGRAMSDIR=$HOME/programs/
 # Save the axioms directory for later
-cd $HOME/programs/axioms
+cd $PROGRAMSDIR/axioms/
 AXIOMSDIR=$(pwd)
 
-# Install anaconda
+# Install anaconda in the programs directory
+cd $PROGRAMSDIR
 echo "Installing Anaconda distribution"
 wget https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh;
 bash Anaconda3-2019.10-Linux-x86_64.sh;
