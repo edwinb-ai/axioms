@@ -47,8 +47,6 @@ echo "Installing programs...";
 poetry run invoke programs;
 echo "Configuring shell...";
 poetry run invoke shell;
-echo "Configuring editor...";
-poetry run invoke editor;
 echo "Adding git configuration...";
 poetry run invoke git;
 echo "Configuring terminal...";
