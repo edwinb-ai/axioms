@@ -97,6 +97,7 @@ def _check_if_program(name: str, destination: str, true: str) -> bool:
         print(f"Not {true}, skipping this step...")
         return False
 
+
 # * Languages
 def install_programming_langs(config_file: Dict, basic_command: List) -> None:
     for m in config_file["languages"].values():
@@ -212,8 +213,14 @@ def parse_editor(config_file: Dict, axioms_dir: str) -> None:
 
 # * Terminal
 def config_terminal(config_file: Dict, axioms_dir: str) -> None:
+    # Try to create the necessary directory tree first
+    destination = f"{os.getenv('HOME')}/.config/alacritty/"
+    try:
+        os.makedirs(destination)
+    except FileExistsError:
+        print(f"{destination} already exists, not doing anything")
+    # Now, copy the configuration files
     for k, v in config_file["terminal"].items():
-        destination = f"{os.getenv('HOME')}/.config/alacritty/"
         if k == "name":
             if is_program := _check_if_program(v, destination, "Alacritty"):
                 continue
