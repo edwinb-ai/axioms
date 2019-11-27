@@ -18,7 +18,6 @@ def setup():
 
     # First, create a special directory to store everything
     # and change the current directory to it
-    create_programs_dir()
     os.chdir(f"{os.getenv('HOME')}/programs")
 
     return config_file, basic_command, axioms_dir

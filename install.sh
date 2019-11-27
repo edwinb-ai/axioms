@@ -18,9 +18,12 @@ ANACONDABIN="$HOME/anaconda3/bin";
 # Create a new environment and activate it
 ANACONDAENV="toml";
 echo "Creating the $ANACONDAENV environment.";
-$ANACONDABIN/conda create -n $ANACONDAENV python=3 --yes;
-$ANACONDABIN/conda activate $ANACONDAENV;
-echo "$ANACONDAENV environment created!";
+# Change location to the conda directory
+cd $ANACONDABIN
+./conda create -n $ANACONDAENV python=3 --yes;
+# Use source for now because the shell is not yet configured
+source activate $ANACONDAENV;
+echo "$ANACONDAENV environment created and activated!";
 
 # In the new environment, install the necessary packages
 echo "Installing Python packages for the installation";

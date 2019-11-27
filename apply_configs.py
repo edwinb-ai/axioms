@@ -97,19 +97,6 @@ def _check_if_program(name: str, destination: str, true: str) -> bool:
         print(f"Not {true}, skipping this step...")
         return False
 
-def create_programs_dir(name: Optional[str] = "programs") -> None:
-    """Try to create a special directory to store most of the programs
-    and utilities needed.
-    """
-    try:
-        programs_dir = f"{os.getenv('HOME')}/{name}"
-        print(f"Trying to create the following directory {programs_dir}")
-        os.mkdir(programs_dir)
-        print(f"Successfully created!")
-    except FileExistsError:
-        print("Because the directory exists, nothing will be done.")
-        pass
-
 # * Languages
 def install_programming_langs(config_file: Dict, basic_command: List) -> None:
     for m in config_file["languages"].values():
