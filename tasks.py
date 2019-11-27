@@ -32,7 +32,7 @@ def languages(c):
 
 # * Progams
 @task
-def progams(c):
+def programs(c):
     config_file, basic_command, _ = setup()
     install_programs(config_file, basic_command)
 
