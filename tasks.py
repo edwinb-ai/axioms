@@ -1,5 +1,5 @@
 from invoke import task
-from apply_configs import parse_editor, create_programs_dir, git_configuration
+from apply_configs import parse_editor, git_configuration
 from apply_configs import config_terminal, install_programming_langs
 from apply_configs import install_programs, parse_shell
 import toml, os

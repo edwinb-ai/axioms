@@ -30,6 +30,7 @@ echo "$ANACONDAENV environment created and activated!";
 # In the new environment, install the necessary packages
 echo "Installing Python packages for the installation";
 pip install poetry;
+poetry install;
 echo "Done!";
 
 # Now, change back to the axioms directory
