@@ -2,16 +2,9 @@
 
 # Update everything from the start
 sudo apt update;
-# Install git
-sudo apt install git -y;
 
-# Create a directory to store everything
-mkdir $HOME/programs/;
-cd $HOME/programs/;
-# Clone the axioms directory from GitHub
-git clone https://github.com/edwinb-ai/axioms.git
 # Save the axioms directory for later
-cd axioms
+cd $HOME/programs/axioms
 AXIOMSDIR=$(pwd)
 
 # Install anaconda
