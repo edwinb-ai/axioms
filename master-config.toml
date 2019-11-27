@@ -11,7 +11,6 @@ langs = [
 
 [programs]
 base = [
-    "git",
     "vim",
     "wget",
     "zsh",
@@ -28,11 +27,10 @@ base = [
 # official repositorires
 special = [
     {name = "fzf", url = "https://github.com/junegunn/fzf.git"},
-    {name = "fd", url = "https://github.com/sharkdp/fd.git"},
+    {name = "fd-find", url = "https://github.com/sharkdp/fd.git"},
     {name = "ddgr", url = "https://github.com/jarun/ddgr.git"},
     {name = "tealdeer", url = "https://github.com/dbrgn/tealdeer.git"},
     {name = "exa", url = "https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip"},
-    {name = "vscode", url = ""},
     {name = "alacritty", url = ""}
 ]
 

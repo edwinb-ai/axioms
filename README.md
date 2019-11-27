@@ -31,8 +31,8 @@ installing everything in a modular fashion.
 
 ## Target platform
 
-For now, this only works for the [Solus Linux](https://getsol.us/home/) distribution,
-as it is assumed that the `eopkg` manager is the default one. Maybe, in the future, could
+For now, this only works for most of the Ubuntu-based distributions with Pop!_OS being the primary one,
+as it is assumed that the `apt` package manager is the default one. Maybe, in the future, could
 more package managers be supported.
 
 ## Python version and environment
