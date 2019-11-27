@@ -169,10 +169,10 @@ def parse_shell(config_file: Dict, axioms_dir: str) -> None:
                 print(f"# This is a config file for the {v} shell.\n", file=z)
             if k == "config":
                 print("# Global configuration file", file=z)
-                print(f"source {v}\n", file=z)
+                print(f"source {axioms_dir}/{v}\n", file=z)
             if k == "alias":
                 print("# Aliases file", file=z)
-                print(f"source {v}", file=z)
+                print(f"source {axioms_dir}/{v}", file=z)
         print("Done!")
     # Deal with the multiplexer
     for k, v in config_file["shell"]["multiplexer"].items():
