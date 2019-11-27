@@ -11,7 +11,7 @@ def setup():
     config_file = toml.load("master-config.toml")
 
     # Master command to install most things
-    basic_command = ["sudo", "eopkg", "it"]
+    basic_command = ["sudo", "apt", "install"]
 
     # Save the axioms directory
     axioms_dir = os.getcwd()

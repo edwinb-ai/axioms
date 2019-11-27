@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
+# Update everything from the start
+sudo apt update;
+
 # Create a directory to store everything
-mkdir $HOME/programs/
-cd $HOME/programs/
+mkdir $HOME/programs/;
+cd $HOME/programs/;
 
 # Install anaconda
 echo "Installing Anaconda distribution"
@@ -21,22 +24,22 @@ echo "$ANACONDAENV environment created!";
 
 # In the new environment, install the necessary packages
 echo "Installing Python packages for the installation";
-pip install toml requests invoke
+pip install poetry;
 echo "Done!";
 
 # Run each task separately
 echo "Installing programming languages...";
-invoke languages
+poetry run invoke languages;
 echo "Installing programs...";
-invoke programs
+poetry run invoke programs;
 echo "Configuring shell...";
-invoke shell
+poetry run invoke shell;
 echo "Configuring editor...";
-invoke editor
+poetry run invoke editor;
 echo "Adding git configuration...";
-invoke git
+poetry run invoke git;
 echo "Configuring terminal...";
-invoke terminal
+poetry run invoke terminal;
 echo "Done!";
 
 # Finally, remove the environment
