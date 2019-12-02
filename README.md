@@ -40,3 +40,11 @@ more package managers be supported.
 `python 3.8` is **compulsory** as the new [walrus operator](https://www.python.org/dev/peps/pep-0572/)
 is employed. For this purpose, a `pyproject.toml` is bundled to be used by [`poetry`](https://poetry.eustace.io/)
 or just to be more readable than a `setup.py` or `requirements.txt` files.
+
+## End result
+
+This is what you get with this configuration files:
+
+![terminal](imgs/proof_of_concept.png)
+
+![editor](imgs/editor.png)
