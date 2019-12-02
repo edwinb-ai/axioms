@@ -43,7 +43,7 @@ or just to be more readable than a `setup.py` or `requirements.txt` files.
 
 ## End result
 
-This is what you get with this configuration files:
+This is what you get with these configuration files:
 
 ![terminal](imgs/proof_of_concept.png)
 
