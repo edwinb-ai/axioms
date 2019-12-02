@@ -6,11 +6,14 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 # fd-fzf exports
-export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git'
+export FZF_DEFAULT_COMMAND='fdfind --type file --follow --hidden --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # Add Cargo (Rust package manager) to PATH
-export PATH=$HOME/.cargo/bin:$PATH
+# export PATH=$HOME/.cargo/bin:$PATH
+
+# Export Julia binaries
+export PATH=/home/edwinb/programs/julia-1.2.0/bin:$PATH
 
 # ==== THEME ==== #
 ZSH_THEME="spaceship"
