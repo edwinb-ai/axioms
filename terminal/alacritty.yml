@@ -4,13 +4,13 @@
 # environment variables. Some entries may override variables
 # set by alacritty itself.
 #env:
-  # TERM variable
-  #
-  # This value is used to set the `$TERM` environment variable for
-  # each instance of Alacritty. If it is not present, alacritty will
-  # check the local terminfo database and use `alacritty` if it is
-  # available, otherwise `xterm-256color` is used.
-  #TERM: xterm-256color
+# TERM variable
+#
+# This value is used to set the `$TERM` environment variable for
+# each instance of Alacritty. If it is not present, alacritty will
+# check the local terminfo database and use `alacritty` if it is
+# available, otherwise `xterm-256color` is used.
+#TERM: xterm-256color
 
 window:
   # Window dimensions (changes require restart)
@@ -87,15 +87,6 @@ scrolling:
   # scrollback is enabled (history > 0).
   multiplier: 3
 
-  # Faux Scrolling
-  #
-  # The `faux_multiplier` setting controls the number of lines the terminal
-  # should scroll when the alternate screen buffer is active. This is used
-  # to allow mouse scrolling for applications like `man`.
-  #
-  # Specifying `0` will disable faux scrolling.
-  faux_multiplier: 0
-
   # Scroll to the bottom when new text is written to the terminal.
   auto_scroll: false
 
@@ -125,25 +116,25 @@ font:
 
   # Bold font face
   #bold:
-    # Font family
-    #
-    # If the bold family is not specified, it will fall back to the
-    # value specified for the normal font.
-    #family: monospace
+  # Font family
+  #
+  # If the bold family is not specified, it will fall back to the
+  # value specified for the normal font.
+  #family: monospace
 
-    # The `style` can be specified to pick a specific face.
-    #style: Bold
+  # The `style` can be specified to pick a specific face.
+  #style: Bold
 
   # Italic font face
   #italic:
-    # Font family
-    #
-    # If the italic family is not specified, it will fall back to the
-    # value specified for the normal font.
-    #family: monospace
+  # Font family
+  #
+  # If the italic family is not specified, it will fall back to the
+  # value specified for the normal font.
+  #family: monospace
 
-    # The `style` can be specified to pick a specific face.
-    #style: Italic
+  # The `style` can be specified to pick a specific face.
+  #style: Italic
 
   # Point size
   size: 13.0
@@ -181,37 +172,35 @@ font:
 draw_bold_text_with_bright_colors: true
 
 schemes:
-  pencil_dark: &pencil
-    # Default Colors
+  pencil_dark: &pencil # Default Colors
     primary:
-      background: '0x212121'
-      foreground: '0xf1f1f1'
+      background: "0x212121"
+      foreground: "0xf1f1f1"
     # Normal colors
     normal:
-      black:   '0x212121'
-      red:     '0xc30771'
-      green:   '0x10a778'
-      yellow:  '0xa89c14'
-      blue:    '0x008ec4'
-      magenta: '0x523c79'
-      cyan:    '0x20a5ba'
-      white:   '0xe0e0e0'
+      black: "0x212121"
+      red: "0xc30771"
+      green: "0x10a778"
+      yellow: "0xa89c14"
+      blue: "0x008ec4"
+      magenta: "0x523c79"
+      cyan: "0x20a5ba"
+      white: "0xe0e0e0"
     # Bright colors
     bright:
-      black:   '0x212121'
-      red:     '0xfb007a'
-      green:   '0x5fd7af'
-      yellow:  '0xf3e430'
-      blue:    '0x20bbfc'
-      magenta: '0x6855de'
-      cyan:    '0x4fb8cc'
-      white:   '0xf1f1f1'
+      black: "0x212121"
+      red: "0xfb007a"
+      green: "0x5fd7af"
+      yellow: "0xf3e430"
+      blue: "0x20bbfc"
+      magenta: "0x6855de"
+      cyan: "0x4fb8cc"
+      white: "0xf1f1f1"
 
-  bas16_dark: &base16
-      # Default colors
+  bas16_dark: &base16 # Default colors
     primary:
-      background: '0x1d2021'
-      foreground: '0xd5c4a1'
+      background: "0x1d2021"
+      foreground: "0xd5c4a1"
 
       # Bright and dim foreground colors
       #
@@ -226,8 +215,8 @@ schemes:
     # Colors which should be used to draw the terminal cursor. If these are unset,
     # the cursor color will be the inverse of the cell color.
     cursor:
-      text: '0x1d2021'
-      cursor: '0xd5c4a1'
+      text: "0x1d2021"
+      cursor: "0xd5c4a1"
 
     # Selection colors
     #
@@ -240,25 +229,25 @@ schemes:
 
     # Normal colors
     normal:
-      black:   '0x1d2021'
-      red:     '0xfb4934'
-      green:   '0xb8bb26'
-      yellow:  '0xfabd2f'
-      blue:    '0x83a598'
-      magenta: '0xd3869b'
-      cyan:    '0x8ec07c'
-      white:   '0xd5c4a1'
+      black: "0x1d2021"
+      red: "0xfb4934"
+      green: "0xb8bb26"
+      yellow: "0xfabd2f"
+      blue: "0x83a598"
+      magenta: "0xd3869b"
+      cyan: "0x8ec07c"
+      white: "0xd5c4a1"
 
     # Bright colors
     bright:
-      black:   '0x665c54'
-      red:     '0xfb4934'
-      green:   '0xb8bb26'
-      yellow:  '0xfabd2f'
-      blue:    '0x83a598'
-      magenta: '0xd3869b'
-      cyan:    '0x8ec07c'
-      white:   '0xfbf1c7'
+      black: "0x665c54"
+      red: "0xfb4934"
+      green: "0xb8bb26"
+      yellow: "0xfabd2f"
+      blue: "0x83a598"
+      magenta: "0xd3869b"
+      cyan: "0x8ec07c"
+      white: "0xfbf1c7"
 
     # Dim colors
     #
@@ -274,17 +263,16 @@ schemes:
     #   `- { index: 16, color: '0xff00ff' }`
     #
     indexed_colors:
-      - { index: 16, color: '0xfe8019' }
-      - { index: 17, color: '0xd65d0e' }
-      - { index: 18, color: '0x3c3836' }
-      - { index: 19, color: '0x504945' }
-      - { index: 20, color: '0xbdae93' }
-      - { index: 21, color: '0xebdbb2' }
+      - { index: 16, color: "0xfe8019" }
+      - { index: 17, color: "0xd65d0e" }
+      - { index: 18, color: "0x3c3836" }
+      - { index: 19, color: "0x504945" }
+      - { index: 20, color: "0xbdae93" }
+      - { index: 21, color: "0xebdbb2" }
 
 # Base16 Gruvbox dark, hard 256 - alacritty color config
 # Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
 colors: *pencil
-  
 
 # Visual Bell
 #
@@ -310,7 +298,7 @@ colors: *pencil
 visual_bell:
   animation: EaseOutExpo
   duration: 0
-  color: '0xffffff'
+  color: "0xffffff"
 
 # Background opacity
 #
@@ -319,7 +307,7 @@ visual_bell:
 background_opacity: 1.0
 
 selection:
-  semantic_escape_chars: ",│`|:\"' ()[]{}<>"
+  semantic_escape_chars: ',│`|:"'' ()[]{}<>'
 
   # When set to `true`, selected text will be copied to the primary clipboard.
   save_to_clipboard: false
@@ -556,16 +544,15 @@ mouse_bindings:
 # be mapped to the `None` action.
 key_bindings:
   # (Windows/Linux only)
-  - { key: V,        mods: Control|Shift,    action: Paste               }
-  - { key: C,        mods: Control|Shift,    action: Copy                }
-  - { key: Insert,   mods: Shift,         action: PasteSelection   }
-  - { key: Key0,     mods: Control,       action: ResetFontSize    }
-  - { key: Equals,   mods: Control,       action: IncreaseFontSize }
-  - { key: Add,      mods: Control,       action: IncreaseFontSize }
-  - { key: Subtract, mods: Control,       action: DecreaseFontSize }
-  - { key: Minus,    mods: Control,       action: DecreaseFontSize }
-  - { key: Return,   mods: Alt,           action: ToggleFullscreen }
-
+  - { key: V, mods: Control|Shift, action: Paste }
+  - { key: C, mods: Control|Shift, action: Copy }
+  - { key: Insert, mods: Shift, action: PasteSelection }
+  - { key: Key0, mods: Control, action: ResetFontSize }
+  - { key: Equals, mods: Control, action: IncreaseFontSize }
+  - { key: Add, mods: Control, action: IncreaseFontSize }
+  - { key: Subtract, mods: Control, action: DecreaseFontSize }
+  - { key: Minus, mods: Control, action: DecreaseFontSize }
+  - { key: Return, mods: Alt, action: ToggleFullscreen }
   # (macOS only)
   #- { key: Key0,     mods: Command, action: ResetFontSize                }
   #- { key: Equals,   mods: Command, action: IncreaseFontSize             }
@@ -579,7 +566,6 @@ key_bindings:
   #- { key: Q,        mods: Command, action: Quit                         }
   #- { key: W,        mods: Command, action: Quit                         }
   #- { key: F,      mods: Command|Control, action: ToggleFullscreen }
-
   # - { key: V,        mods: Alt, action: Paste                            }
   # - { key: C,        mods: Alt, action: Copy                             }
   # - { key: Paste,                   action: Paste                        }
