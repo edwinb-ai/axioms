@@ -13,7 +13,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # export PATH=$HOME/.cargo/bin:$PATH
 
 # Export Julia binaries
-export PATH=/home/edwinb/programs/julia-1.2.0/bin:$PATH
+export PATH=$HOME/programs/julia-1.3.1/bin:$PATH
 
 # ==== THEME ==== #
 ZSH_THEME="spaceship"
