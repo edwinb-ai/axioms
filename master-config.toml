@@ -5,7 +5,7 @@ name = "Edwin Bedolla"
 
 [languages]
 langs = [
-    {name = "julia", url = "https://julialang-s3.julialang.org/bin/linux/x64/1.3/julia-1.3.1-linux-x86_64.tar.gz"},
+    {name = "julia", url = "https://julialang-s3.julialang.org/bin/linux/x64/1.4/julia-1.4.0-linux-x86_64.tar.gz"},
     {name = "rust", script = "curl --proto \"=https\" --tlsv1.2 -sSf https://sh.rustup.rs | sh"}
 ]
 
@@ -18,7 +18,7 @@ base = [
     "g++",
     "gfortran",
     "gnuplot",
-    "tmux",
+    "byobu",
     "screen",
     "make",
     "cmake"
@@ -31,7 +31,7 @@ special = [
     {name = "ddgr", url = "https://github.com/jarun/ddgr.git"},
     {name = "tealdeer", url = "https://github.com/dbrgn/tealdeer.git"},
     {name = "exa", url = "https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip"},
-    {name = "alacritty", url = ""}
+    {name = "kitty", script = "curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin"}
 ]
 
 [shell]
@@ -41,8 +41,7 @@ config = "shell/zshrc.zsh"
 alias = "shell/aliases.zsh"
 
     [shell.multiplexer]
-    name = "tmux"
-    config = "shell/tmux.conf"
+    name = "byobu"
 
 [github]
 file = "git/gitconfig"

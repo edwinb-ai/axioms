@@ -183,7 +183,8 @@ def git_configuration(config_file: Dict, axioms_dir: str) -> None:
 def parse_editor(config_file: Dict, axioms_dir: str) -> None:
     for k, v in config_file["editor"].items():
         # First, check to see if the editor is VSCode
-        destination = f"{os.getenv('HOME')}/.config/Code/User/"
+        #destination = f"{os.getenv('HOME')}/.config/Code/User/"
+        destination = f"{os.getenv('HOME')}/.config/Code - OSS/User/"
         if k == "name":
             if is_program := _check_if_program(v, destination, "Visual Studio Code"):
                 continue
@@ -197,7 +198,8 @@ def parse_editor(config_file: Dict, axioms_dir: str) -> None:
             # Look for the extensions section and loop over
             for m, n in ext_file["extensions"].items():
                 if m == "names":
-                    install_command = "code --install-extension".split(" ")
+                    #install_command = "code --install-extension".split(" ")
+                    install_command = "code-oss --install-extension".split(" ")
                     # The extensions are a list to loop over
                     for e in n:
                         tmp_list = install_command.copy()
