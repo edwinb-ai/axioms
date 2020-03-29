@@ -52,5 +52,5 @@ extensions = "vscode-settings/extensions.toml"
 settings = "vscode-settings/settings.json"
 
 [terminal]
-name = "Alacritty"
-config = "terminal/alacritty.yml"
+name = "Kitty"
+config = "terminal/kitty.conf"
