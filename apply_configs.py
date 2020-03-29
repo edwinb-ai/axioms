@@ -98,17 +98,18 @@ def _check_if_program(name: str, destination: str, true: str) -> bool:
         return False
 
 
-# * Languages
+# * Programming Languages
 def install_programming_langs(config_file: Dict, basic_command: List) -> None:
+    # `m` is a list
     for m in config_file["languages"].values():
+        # And `i` is a dictionary from the list `m`
         for i in m:
             for k, v in i.items():
                 # Create a temporary list to store the full command
                 tmp_list = basic_command.copy()
-                # tmp_list = "sudo apt install".split(" ")
                 tmp_list.append(v)
 
-                # Try first by name
+                # Try by name first
                 if k == "name":
                     try:
                         sbp.run(tmp_list, check=True)
@@ -181,36 +182,38 @@ def git_configuration(config_file: Dict, axioms_dir: str) -> None:
 
 # * Visual Studio Code
 def parse_editor(config_file: Dict, axioms_dir: str) -> None:
-    for k, v in config_file["editor"].items():
-        # First, check to see if the editor is VSCode
-        #destination = f"{os.getenv('HOME')}/.config/Code/User/"
-        destination = f"{os.getenv('HOME')}/.config/Code - OSS/User/"
-        if k == "name":
-            if is_program := _check_if_program(v, destination, "Visual Studio Code"):
-                continue
-            else:
-                break
-        # Next, install the respective extensions
-        if k == "extensions":
-            print("Installing extensions...")
-            # Read the extensions file from the repo
-            ext_file = toml.load(f"{axioms_dir}/{v}")
-            # Look for the extensions section and loop over
-            for m, n in ext_file["extensions"].items():
-                if m == "names":
-                    #install_command = "code --install-extension".split(" ")
-                    install_command = "code-oss --install-extension".split(" ")
-                    # The extensions are a list to loop over
-                    for e in n:
-                        tmp_list = install_command.copy()
-                        tmp_list.append(e)
-                        # Do not prompt for approval
-                        tmp_list.append("--force")
-                        sbp.run(tmp_list)
-            print("Done!")
-        # Finally, copy the specified configurations
-        if k == "settings":
-            _try_copy(f"{axioms_dir}/{v}", destination)
+    # Get all the editor items
+    editor = config_file["editor"]
+
+    # Extract the destination
+    destination = f"{os.getenv('HOME')}/.config/{editor['name']}/User/"
+
+    # Check if it exists
+    try:
+        os.makedirs(destination)
+    except FileExistsError:
+        print(f"{destination} already exists...")
+
+    # Try installing the extensions
+    print("Installing extensions...")
+    # Read the extensions file from the repo
+    ext_file = toml.load(f"{axioms_dir}/{editor['extensions']}")
+    # Look for the extensions section and loop over
+    for m, n in ext_file["extensions"].items():
+        if m == "names":
+            install_command = f"{editor['command']} --install-extension".split(" ")
+            # The extensions are a list to loop over
+            for e in n:
+                tmp_list = install_command.copy()
+                tmp_list.append(e)
+            # Do not prompt for approval
+            tmp_list.append("--force")
+            sbp.run(tmp_list)
+    print("Done!")
+
+    # Finally, copy settings
+    print("Copying settings")
+    _try_copy(f"{axioms_dir}/{editor['settings']}", destination)
 
 
 # * Terminal

@@ -47,7 +47,8 @@ alias = "shell/aliases.zsh"
 file = "git/gitconfig"
 
 [editor]
-name = "Visual Studio Code"
+name = "Code - OSS"
+command = "code-oss"
 extensions = "vscode-settings/extensions.toml"
 settings = "vscode-settings/settings.json"
 
