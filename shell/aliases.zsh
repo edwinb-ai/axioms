@@ -15,3 +15,6 @@ alias bang="ddgr --gb --np"
 
 # Visual Studio Code
 # alias code="code-oss"
+
+# git
+alias gcsam="git commit -S -a -m"
