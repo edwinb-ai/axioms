@@ -54,4 +54,5 @@ settings = "vscode-settings/settings.json"
 
 [terminal]
 name = "Kitty"
+destination = ".config/kitty"
 config = "terminal/kitty.conf"
