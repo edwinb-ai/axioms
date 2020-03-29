@@ -216,7 +216,7 @@ def parse_editor(config_file: Dict, axioms_dir: str) -> None:
 # * Terminal
 def config_terminal(config_file: Dict, axioms_dir: str) -> None:
     # Try to create the necessary directory tree first
-    destination = f"{os.getenv('HOME')}/.config/alacritty/"
+    destination = f"{os.getenv('HOME')}/.config/kitty/"
     try:
         os.makedirs(destination)
     except FileExistsError:
@@ -224,7 +224,7 @@ def config_terminal(config_file: Dict, axioms_dir: str) -> None:
     # Now, copy the configuration files
     for k, v in config_file["terminal"].items():
         if k == "name":
-            if is_program := _check_if_program(v, destination, "Alacritty"):
+            if is_program := _check_if_program(v, destination, "Kitty"):
                 continue
             else:
                 break
