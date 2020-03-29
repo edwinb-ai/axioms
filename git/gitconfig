@@ -1,6 +1,8 @@
 [user]
         email = developeredwin@gmail.com
         name = edwinb-ai
-        signingKey = AB8A87F36A72869B345A49EAFD52EF9263056E65
+        signingKey = EE1C4DC234CD340F585759E73BFD0155D2857E6E
 [commit]
         gpgSign = true
+[core]
+        editor = code-oss -w

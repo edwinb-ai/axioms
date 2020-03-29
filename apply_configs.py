@@ -79,23 +79,10 @@ def _try_copy(source: str, destination: str) -> None:
     """
     print("Copying config files...")
     try:
-        # shutil.copyfile(f"{axioms_dir}/{v}", destination)
         shutil.copy(f"{source}", f"{destination}")
         print("Done!")
     except FileNotFoundError:
         print(f"There is no such directory {destination}, check again.")
-
-
-def _check_if_program(name: str, destination: str, true: str) -> bool:
-    """Checks if the name corresponds to the true value, if so,
-    is uses the destination for that program for files to be copied.
-    """
-    if name == true:
-        print(f"Configuration files will be copied to {destination}")
-        return True
-    else:
-        print(f"Not {true}, skipping this step...")
-        return False
 
 
 # * Programming Languages
@@ -163,13 +150,17 @@ def parse_shell(config_file: Dict, axioms_dir: str) -> None:
                 print("# Aliases file", file=z)
                 print(f"source {axioms_dir}/{v}", file=z)
         print("Done!")
+
     # Deal with the multiplexer
-    for k, v in config_file["shell"]["multiplexer"].items():
-        print("Copying the multiplexer configuration files")
-        destination = f"{os.getenv('HOME')}/.tmux.conf"
-        if k == "config":
-            _try_copy(f"{axioms_dir}/{v}", destination)
-        print("Done!")
+    multiplexer = config_file["shell"]["multiplexer"]
+    if "config" in multiplexer.keys():
+        print("Copying the multiplexer configuration files...")
+        destination = f"{os.getenv('HOME')}/{multiplexer['destination']}"
+        _try_copy(f"{axioms_dir}/{v}", destination)
+    else:
+        print(("No configuration files needed/found..."))
+    # Finish dealing with the multiplexer
+    print("Done!")
 
 
 # * Github configuration
@@ -206,9 +197,9 @@ def parse_editor(config_file: Dict, axioms_dir: str) -> None:
             for e in n:
                 tmp_list = install_command.copy()
                 tmp_list.append(e)
-            # Do not prompt for approval
-            tmp_list.append("--force")
-            sbp.run(tmp_list)
+                # Do not prompt for approval
+                tmp_list.append("--force")
+                sbp.run(tmp_list)
     print("Done!")
 
     # Finally, copy settings
