@@ -13,7 +13,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # export PATH=$HOME/.cargo/bin:$PATH
 
 # Export Julia binaries
-export PATH=$HOME/programs/julia-1.4.0/bin:$PATH
+export PATH=$HOME/programs/julia-1.4.1/bin:$PATH
 
 # Add poetry
 export PATH=$HOME/.poetry/bin:$PATH
