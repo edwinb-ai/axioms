@@ -9,6 +9,7 @@ alias lga="exa --grid --across --header --long"
 
 # server
 alias educk="ssh edwin@148.214.16.183"
+alias boltzmann="ssh cernalue@148.214.16.51 -p 1048"
 
 # ddgr
 alias bang="ddgr --gb --np"
