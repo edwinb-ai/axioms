@@ -1,6 +1,6 @@
 # ==== ALIASES ==== #
 # zsh
-alias zshconfig="code ~/.zshrc"
+alias zshconfig="codium ~/.zshrc"
 alias zshup="source ~/.zshrc"
 
 # exa
@@ -13,9 +13,6 @@ alias boltzmann="ssh cernalue@148.214.16.51 -p 1048"
 
 # ddgr
 alias bang="ddgr --gb --np"
-
-# Visual Studio Code
-# alias code="code-oss"
 
 # git
 alias gcsam="git commit -S -a -m"

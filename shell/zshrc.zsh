@@ -19,7 +19,7 @@ export PATH=$HOME/programs/julia-1.4.1/bin:$PATH
 export PATH=$HOME/.poetry/bin:$PATH
 
 # ==== THEME ==== #
-ZSH_THEME="spaceship"
+# ZSH_THEME="spaceship"
 
 # ==== OPTIONS ==== #
 # Uncomment the following line to automatically update without prompting.
@@ -54,3 +54,5 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# Enable the starship prompt
+eval "$(starship init zsh)"
