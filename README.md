@@ -24,10 +24,34 @@ packaged with this repository.
 
 ## Usage
 
-When using for the **first time**, `install.sh` should be used to *bootstrap* everything.
+### Python version and environment
 
-If one simply wants the configuration to be applied, the `tasks.py` file takes care of updating or
-installing everything in a modular fashion.
+`python 3.8` is **compulsory** as the new [walrus operator](https://www.python.org/dev/peps/pep-0572/) is employed.
+
+### Handling dependencies and `poetry`
+
+To be able to use this repository, [`poetry`](https://poetry.eustace.io/)
+must be installed in your system. Once that is done, you can clone
+this repository like such
+
+    git clone --depth 1 https://github.com/edwinb-ai/axioms.git
+
+in the directory of your choice.
+
+After cloning, the dependencies need to be installed using `poetry`
+
+    poetry install
+
+and then you can install all of the configurations using
+
+    poetry run invoke git terminal editor shell programs languages
+
+or, if you prefer a specific configuration, just call that, for example,
+if just the editor is needed then the following command is enough
+
+    poetry run invoke editor
+
+and the same applies for the rest.
 
 ## Target platform
 
@@ -35,16 +59,10 @@ For now, this only works for most of the Ubuntu-based distributions with Pop!_OS
 as it is assumed that the `apt` package manager is the default one. Maybe, in the future, could
 more package managers be supported.
 
-## Python version and environment
-
-`python 3.8` is **compulsory** as the new [walrus operator](https://www.python.org/dev/peps/pep-0572/)
-is employed. For this purpose, a `pyproject.toml` is bundled to be used by [`poetry`](https://poetry.eustace.io/)
-or just to be more readable than a `setup.py` or `requirements.txt` files.
-
 ## End result
 
 This is what you get with these configuration files:
 
-![terminal](imgs/proof_of_concept.png)
+![terminal](imgs/proof-of-concept.png)
 
 ![editor](imgs/editor.png)

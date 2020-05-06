@@ -5,4 +5,4 @@
 [commit]
         gpgSign = true
 [core]
-        editor = code-oss -w
+        editor = codium -w

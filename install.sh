@@ -8,14 +8,8 @@ PROGRAMSDIR=$HOME/programs/
 cd $PROGRAMSDIR/axioms/
 AXIOMSDIR=$(pwd)
 
-# Install anaconda in the programs directory
-cd $PROGRAMSDIR
-echo "Installing Anaconda distribution"
-wget https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh;
-bash Anaconda3-2019.10-Linux-x86_64.sh;
-
-# Save the binary directory for later
-ANACONDABIN="$HOME/anaconda3/bin/";
+# Install pyenv from the repositories
+sudo apt install python3-pyenv;
 
 # Create a new environment and activate it
 ANACONDAENV="toml";

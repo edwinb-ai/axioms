@@ -21,6 +21,9 @@ export PATH=$HOME/.poetry/bin:$PATH
 # ==== THEME ==== #
 # ZSH_THEME="spaceship"
 
+# Enable the starship prompt
+eval "$(starship init zsh)"
+
 # ==== OPTIONS ==== #
 # Uncomment the following line to automatically update without prompting.
 DISABLE_UPDATE_PROMPT="true"
@@ -39,20 +42,5 @@ plugins=(z git zsh-syntax-highlighting)
 # Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$("$HOME/anaconda3/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "$HOME/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="$HOME/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-# Enable the starship prompt
-eval "$(starship init zsh)"
+# Add custom configuration
+export STARSHIP_CONFIG=~/.config/starship.toml

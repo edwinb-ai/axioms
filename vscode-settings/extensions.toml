@@ -37,5 +37,7 @@ names = [
     "vscode-icons-team.vscode-icons",
     "wholroyd.jinja",
     "yzhang.markdown-all-in-one",
-    "zhuangtongfa.material-theme"
+    "zhuangtongfa.material-theme",
+    "ymotongpoo.licenser",
+    "mhutchie.git-graph"
 ]

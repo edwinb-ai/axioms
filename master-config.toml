@@ -5,7 +5,7 @@ name = "Edwin Bedolla"
 
 [languages]
 langs = [
-    {name = "julia", url = "https://julialang-s3.julialang.org/bin/linux/x64/1.4/julia-1.4.0-linux-x86_64.tar.gz"},
+    {name = "julia", url = "https://julialang-s3.julialang.org/bin/linux/x64/1.4/julia-1.4.1-linux-x86_64.tar.gz"},
     {name = "rust", script = "curl --proto \"=https\" --tlsv1.2 -sSf https://sh.rustup.rs | sh"}
 ]
 
@@ -14,10 +14,8 @@ base = [
     "vim",
     "wget",
     "zsh",
-    "gcc",
-    "g++",
+    "build-essential",
     "gfortran",
-    "gnuplot",
     "byobu",
     "screen",
     "make",
@@ -47,8 +45,8 @@ alias = "shell/aliases.zsh"
 file = "git/gitconfig"
 
 [editor]
-name = "Code - OSS"
-command = "code-oss"
+name = "VSCodium"
+command = "codium"
 extensions = "vscode-settings/extensions.toml"
 settings = "vscode-settings/settings.json"
 
