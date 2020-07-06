@@ -10,7 +10,7 @@ export FZF_DEFAULT_COMMAND='fdfind --type file --follow --hidden --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # Add Cargo (Rust package manager) to PATH
-# export PATH=$HOME/.cargo/bin:$PATH
+export PATH=$HOME/.cargo/bin:$PATH
 
 # Export Julia binaries
 export PATH=$HOME/programs/julia-1.4.2/bin:$PATH
