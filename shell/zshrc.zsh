@@ -1,6 +1,4 @@
 # ==== EXPORTS ==== #
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -17,6 +15,9 @@ export PATH=$HOME/programs/julia-1.5.0/bin:$PATH
 
 # Add poetry
 export PATH=$HOME/.poetry/bin:$PATH
+
+# Add Go
+export PATH=$PATH:/usr/local/go/bin
 
 # ==== THEME ==== #
 # ZSH_THEME="spaceship"
