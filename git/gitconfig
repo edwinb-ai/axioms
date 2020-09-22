@@ -1,8 +1,8 @@
 [user]
         email = developeredwin@gmail.com
         name = edwinb-ai
-        signingKey = EE1C4DC234CD340F585759E73BFD0155D2857E6E
+        signingKey = B84A8FBFDB9A1616BB06EC3CA3454C58FB8C6C68
 [commit]
         gpgSign = true
 [core]
-        editor = codium -w
+        editor = code -w
