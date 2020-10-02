@@ -1,6 +1,4 @@
 # ==== ALIASES ==== #
-# python
-alias python="python3"
 
 # zsh
 alias zshconfig="code ~/.zshrc"
