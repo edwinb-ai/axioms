@@ -1,7 +1,7 @@
 [user]
         email = developeredwin@gmail.com
         name = edwinb-ai
-        signingKey = B84A8FBFDB9A1616BB06EC3CA3454C58FB8C6C68
+        signingkey = C2EBD66226B044BED6C9C58A4832E96134F19C88
 [commit]
         gpgSign = true
 [core]
